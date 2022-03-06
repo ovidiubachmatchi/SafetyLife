@@ -1,1 +1,2 @@
 # SafetyLife
+For all people who feel in danger in public and private spaces, SafetyLife is an android mobile application that offers an advanced SOS system, without unlocking or taking your phone out of your pocket. Unlike other mobile applications that offer human security services, our application offers a complex package of highly competent SOS services for each person regardless of age and problems.

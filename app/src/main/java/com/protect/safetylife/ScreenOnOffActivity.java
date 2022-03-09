@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,22 +20,47 @@ public class ScreenOnOffActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(getApplicationContext(),"ScreenOnOffActivity created",Toast.LENGTH_SHORT).show();
-
         // setting visual layout
-        setContentView(R.layout.auth_landing);
-        // starting app service in background
+        setContentView(R.layout.dashboard);
+        // starting background service
         Intent backgroundService = new Intent(this, ScreenOnOffBackgroundService.class);
         // making sure the service is not running in multiple instances
         if (!isMyServiceRunning(ScreenOnOffBackgroundService.class)) {
-            Toast.makeText(getApplicationContext(),"ScreenOnOffBackgroundService created",Toast.LENGTH_SHORT).show();
             startService(backgroundService);
         }
-        else {
-            Toast.makeText(getApplicationContext(),"ScreenOnOffBackgroundService already running in background",Toast.LENGTH_SHORT).show();
+        // if the activity was opened from the notification background service
+        // we are going to show the force close button
+        Intent intent = getIntent();
+        if (intent != null && intent.getAction() == "showForceClose") {
+            showForceCloseButton();
+            Toast.makeText(this, "apasat din notificare, aplicatia era inchisa", Toast.LENGTH_LONG).show();
         }
-        // info activity started
-
+    }
+    /**
+     * METHOD NOT APPROVED, TO BE DISCUSSED
+     * The method is showing a button on the dashboard.xml that can force close the application
+     * Useful if you want to close the background service in a user friendly manner
+     */
+    private void showForceCloseButton() {
+        Button forceClose = findViewById(R.id.forceCloseButton);
+        forceClose.setVisibility(View.VISIBLE);
+        forceClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
+            }
+        });
+    }
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        // if the activity was opened from the notification background service
+        // but the activity was already running, we are going to show the force close button
+        if (intent != null && intent.getAction() == "showForceClose") {
+            showForceCloseButton();
+            Toast.makeText(this, "apasat din notificare, aplicatia era deschisa", Toast.LENGTH_LONG).show();
+        }
     }
     /**
      * The method is looping in every running services to see if the parameter of the function is
@@ -56,7 +83,6 @@ public class ScreenOnOffActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // info activity destroyed
-        Toast.makeText(getApplicationContext(),"ScreenOnOffActivity destroyed",Toast.LENGTH_SHORT).show();
+        // activity destroyed
     }
 }

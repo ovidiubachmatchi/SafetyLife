@@ -1,8 +1,11 @@
 package com.protect.safetylife;
 
+import static android.content.Intent.FLAG_ACTIVITY_TASK_ON_HOME;
+
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -28,7 +31,6 @@ public class ScreenOnOffBackgroundService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d("onStartCommand", "Service onStartCommand: screenOnOffReceiver is started.");
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -61,14 +63,12 @@ public class ScreenOnOffBackgroundService extends Service {
 
         // Register the broadcast receiver with the intent filter object.
         registerReceiver(screenOnOffReceiver, intentFilter);
-
-        Log.d("SCREEN_TOGGLE_TAG", "Service onCreate: screenOnOffReceiver is registered.");
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private void startMyOwnForeground()
     {
-        String NOTIFICATION_CHANNEL_ID = "example.permanence";
+        String NOTIFICATION_CHANNEL_ID = "safetylife";
         String channelName = "Background Service";
         NotificationChannel chan = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, NotificationManager.IMPORTANCE_NONE);
         chan.setLightColor(Color.BLUE);
@@ -78,17 +78,23 @@ public class ScreenOnOffBackgroundService extends Service {
         assert manager != null;
         manager.createNotificationChannel(chan);
 
+        // launch activity when clicking on background service notification
+        Intent resultIntent = new Intent(this, ScreenOnOffActivity.class);
+        resultIntent.setAction("showForceClose");
+
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
         Notification notification = notificationBuilder.setOngoing(true)
-
-                // fara .setSmallIcon, contentul notificarii nu se schimba
                 .setSmallIcon(R.drawable.background_notification_icon)
-                .setContentTitle("SafetyLife is running in background")
                 .setColor(Color.GRAY)
-                .setContentText(" descriere notificare ") // to be modified
+                .setContentTitle("SafetyLife is running in background")
+                .setContentText("Click to stop the application from listening to you in moments of panic") // to be modified
                 .setPriority(NotificationManager.IMPORTANCE_MIN)
                 .setCategory(Notification.CATEGORY_SERVICE)
+                .setContentIntent(resultPendingIntent)
                 .build();
+
         startForeground(2, notification);
     }
 

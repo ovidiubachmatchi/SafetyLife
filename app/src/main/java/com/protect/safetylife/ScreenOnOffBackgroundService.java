@@ -1,7 +1,5 @@
 package com.protect.safetylife;
 
-import static android.content.Intent.FLAG_ACTIVITY_TASK_ON_HOME;
-
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -14,6 +12,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
+
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
@@ -89,7 +88,7 @@ public class ScreenOnOffBackgroundService extends Service {
                 .setSmallIcon(R.drawable.background_notification_icon)
                 .setColor(Color.GRAY)
                 .setContentTitle("SafetyLife is running in background")
-                .setContentText("Click to stop the application from listening to you in moments of panic") // to be modified
+                .setContentText("Click to stop the application") // to be modified
                 .setPriority(NotificationManager.IMPORTANCE_MIN)
                 .setCategory(Notification.CATEGORY_SERVICE)
                 .setContentIntent(resultPendingIntent)

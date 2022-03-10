@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1785" />
+        <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/auth_button.xml" value="0.1785" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/auth_rectangle_1.xml" value="0.1785" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/auth_rectangle_2.xml" value="0.1785" />
+        <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/auth_rectangle_shadow_pixelated.xml" value="0.1785" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/ic_don_t_have_an_account_yet__sign_up.xml" value="0.1785" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1785" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/ic_life.xml" value="0.1785" />

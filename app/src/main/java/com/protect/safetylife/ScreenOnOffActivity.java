@@ -4,10 +4,8 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +29,7 @@ public class ScreenOnOffActivity extends AppCompatActivity {
         // if the activity was opened from the notification background service
         // we are going to show the force close button
         Intent intent = getIntent();
-        if (intent != null && intent.getAction() == "showForceClose") {
+        if (intent != null && intent.getAction().equals("showForceClose")) {
             showForceCloseButton();
             Toast.makeText(this, "apasat din notificare, aplicatia era inchisa", Toast.LENGTH_LONG).show();
         }
@@ -44,12 +42,9 @@ public class ScreenOnOffActivity extends AppCompatActivity {
     private void showForceCloseButton() {
         Button forceClose = findViewById(R.id.forceCloseButton);
         forceClose.setVisibility(View.VISIBLE);
-        forceClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                System.exit(0);
-            }
+        forceClose.setOnClickListener(v -> {
+            finish();
+            System.exit(0);
         });
     }
     @Override
@@ -57,7 +52,7 @@ public class ScreenOnOffActivity extends AppCompatActivity {
         super.onNewIntent(intent);
         // if the activity was opened from the notification background service
         // but the activity was already running, we are going to show the force close button
-        if (intent != null && intent.getAction() == "showForceClose") {
+        if (intent != null && intent.getAction().equals("showForceClose")) {
             showForceCloseButton();
             Toast.makeText(this, "apasat din notificare, aplicatia era deschisa", Toast.LENGTH_LONG).show();
         }

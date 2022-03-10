@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/auth_selected_top_image" />
+        app:srcCompat="@drawable/auth_image_selected_top" />
 
     <ImageView
         android:id="@+id/image_bottom"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/auth_selected_left_bottom_corner" />
+        app:srcCompat="@drawable/auth_image_selected_left_bottom_corner" />
 
     <ImageView
         android:id="@+id/repeat_password_textbox"

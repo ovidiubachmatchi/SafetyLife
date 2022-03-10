@@ -37,22 +37,12 @@
         android:id="@+id/password_textbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/repeat_password_textbox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/auth_input_box" />
-
-    <ImageView
-        android:id="@+id/email_text_box"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="28dp"
-        app:layout_constraintBottom_toTopOf="@+id/password_textbox"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView13"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:srcCompat="@drawable/auth_input_box" />
 
     <ImageView
@@ -76,13 +66,13 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button"
-        app:srcCompat="@drawable/auth_text_already_have_an_account__log_in" />
+        app:srcCompat="@drawable/auth_text_donthaveaccountyet" />
 
     <TextView
         android:id="@+id/textView_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign up"
+        android:text="Log in"
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/button"
         app:layout_constraintEnd_toEndOf="@+id/button"
@@ -112,16 +102,14 @@
         app:srcCompat="@drawable/auth_text_life" />
 
     <ImageView
-        android:id="@+id/imageView13"
+        android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/email_text_box"
+        app:layout_constraintBottom_toTopOf="@+id/password_textbox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_top"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/auth_text_createyouraccount" />
+        app:layout_constraintVertical_bias="0.092"
+        app:srcCompat="@drawable/auth_text_welcomeback" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

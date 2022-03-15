@@ -1,7 +1,11 @@
-- location history 
+- location history
 - trimiterea de locatie live cand "apelez sistemul SOS"
 - Logarea/Inregistrarea ( optionala ) prin email/parola pentru salvarea preferintelor
 - Se poate seta in prealabil facilitatile active ale aplicatiei precum:
- • Fake Calls(apel telefonic fals, folosit ca scuză  pentru a ieși dintr-o situație primejdioasa)
- • Apelarea unui numar de telefon ( personalizat sau al politiei )
- • Trimiterea informatilor legate de localizare alaturi de un text personalizat unei persoane prestabilite
+- Fake Calls(apel telefonic fals, folosit ca scuză  pentru a ieși dintr-o situație primejdioasa)
+- Apelarea unui numar de telefon ( personalizat sau al politiei )
+- Trimiterea informatilor legate de localizare alaturi de un text personalizat
+unei persoane prestabilite
+- La crearea unui cont persoana poate sa selecteze si bolile de care sufera
+alaturi de grupa de sange si informatile vitale ale persoanei 
+- 

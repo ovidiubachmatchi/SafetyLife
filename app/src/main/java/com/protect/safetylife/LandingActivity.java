@@ -19,6 +19,7 @@ public class LandingActivity extends AppCompatActivity {
         addButtonsFunctionality();
     }
 
+
     private void addButtonsFunctionality() {
         ImageView loginBtn = findViewById(R.id.button_white_fill);
         ImageView signupBtn = findViewById(R.id.button_empty);

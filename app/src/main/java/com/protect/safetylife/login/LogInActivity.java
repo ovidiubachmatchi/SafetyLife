@@ -16,6 +16,13 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(R.layout.login);
         addButtonsAnimation();
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.back_slide_out_bottom, R.anim.back_slide_in_bottom);
+    }
+
     private void addButtonsAnimation() {
         ImageView backBtn = findViewById(R.id.back);
         ImageView loginBtn = findViewById(R.id.loginBtn);
@@ -24,8 +31,9 @@ public class LogInActivity extends AppCompatActivity {
             loginBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
         });
 
-        loginBtn.setOnClickListener(v -> {
-            loginBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
+        backBtn.setOnClickListener(v -> {
+            backBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
+            finish();
         });
 
     }

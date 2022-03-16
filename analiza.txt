@@ -1,0 +1,25 @@
+```1. Titlul proiectului
+"SafetyLife" aplicatia menita sa contribuie la siguranta fiecarei persoane.
+2. De ce am ales acest proiect ?
+Se estimează că 240 de milioane de apeluri/mesaje sunt efectuate la numarul
+autoritatilor doar în SUA în fiecare an. În multe zone, 80% sau mai mult provin de
+la dispozitive mobile.
+Multe persoane care sunt agresate nu apuca sa alerteze un numar de urgenta
+astfel noi oferim o solutie pentru a solicita ajutor intr-o situatie primejdioasa. Am
+ales acest proiect pentru a ajuta persoane si pune la dispozitia lor o modalitate
+usoara de a alerta autoritatile cat si contactele noastre.
+3. Descrierea proiectului
+Pentru toate persoanele care se simt în pericol în spațiile publice și private,
+SafetyLife este o aplicație mobilă Android care oferă un sistem SOS modern, fără
+a debloca sau a scoate telefonul din buzunar. Spre deosebire de alte aplicații
+mobile care oferă servicii de securitate umană, aplicația noastră oferă un pachet
+de servicii SOS pentru fiecare persoană, indiferent de vârstă și probleme.
+- Logarea/Inregistrarea ( optionala ) pentru salvarea datelor si a preferintelor cloud
+- Trimiterea locatiei curente si a detalilor personale sub forma unui SMS
+atunci cand modul SOS este activat
+- Apelarea unui numar de telefon ( personalizat sau al politiei )
+- Monitorizarea locatiei si istoricului acesteia
+- Inregistrarea audio/video cand modul SOS este activat
+- Fake Calls( apel telefonic fals, folosit ca scuză pentru a ieși dintr-o
+situație primejdioasa )
+- Permite utilizatorilor să seteze mementouri pentru medicamente sau activitati```

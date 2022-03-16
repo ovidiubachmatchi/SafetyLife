@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +21,7 @@ public class ScreenOnOffActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // setting visual layout
-        setContentView(R.layout.dashboard);
+        setContentView(R.layout.landing);
         // starting background service
         Intent backgroundService = new Intent(this, ScreenOnOffBackgroundService.class);
         // making sure the service is not running in multiple instances
@@ -33,6 +35,18 @@ public class ScreenOnOffActivity extends AppCompatActivity {
             showForceCloseButton();
             Toast.makeText(this, "apasat din notificare, aplicatia era inchisa", Toast.LENGTH_LONG).show();
         }
+
+        ImageView loginBtn = findViewById(R.id.button_white_fill);
+        ImageView signupBtn = findViewById(R.id.button_empty);
+
+        loginBtn.setOnClickListener(v -> {
+            loginBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
+        });
+
+        signupBtn.setOnClickListener(v -> {
+            signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
+        });
+
     }
     /**
      * METHOD NOT APPROVED, TO BE DISCUSSED
@@ -40,12 +54,12 @@ public class ScreenOnOffActivity extends AppCompatActivity {
      * Useful if you want to close the background service in a user friendly manner
      */
     private void showForceCloseButton() {
-        Button forceClose = findViewById(R.id.forceCloseButton);
-        forceClose.setVisibility(View.VISIBLE);
-        forceClose.setOnClickListener(v -> {
+//        Button forceClose = findViewById(R.id.forceCloseButton);
+//        forceClose.setVisibility(View.VISIBLE);
+//        forceClose.setOnClickListener(v -> {
             finish();
             System.exit(0);
-        });
+//        });
     }
     @Override
     protected void onNewIntent(Intent intent) {

@@ -85,7 +85,7 @@ public class ScreenOnOffBackgroundService extends Service {
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
         Notification notification = notificationBuilder.setOngoing(true)
-                .setSmallIcon(R.drawable.background_notification_icon)
+//                .setSmallIcon(R.drawable.background_notification_icon)
                 .setColor(Color.GRAY)
                 .setContentTitle("SafetyLife is running in background")
                 .setContentText("Click to stop the application") // to be modified

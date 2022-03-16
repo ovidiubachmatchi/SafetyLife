@@ -78,14 +78,14 @@ public class ScreenOnOffBackgroundService extends Service {
         manager.createNotificationChannel(chan);
 
         // launch activity when clicking on background service notification
-        Intent resultIntent = new Intent(this, ScreenOnOffActivity.class);
-        resultIntent.setAction("showForceClose");
+        Intent resultIntent = new Intent(this, DashboardActivity.class);
+        resultIntent.setAction("intentForceClose");
 
         PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 1, resultIntent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
         Notification notification = notificationBuilder.setOngoing(true)
-//                .setSmallIcon(R.drawable.background_notification_icon)
+                .setSmallIcon(R.drawable.icon_plus)
                 .setColor(Color.GRAY)
                 .setContentTitle("SafetyLife is running in background")
                 .setContentText("Click to stop the application") // to be modified

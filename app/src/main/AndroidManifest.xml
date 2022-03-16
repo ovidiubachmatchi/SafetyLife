@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.protect.safetylife">
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
@@ -12,17 +13,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme">
 
-        <activity android:name="com.protect.safetylife.ScreenOnOffActivity"
+        <activity android:name=".DashboardActivity"
+            android:launchMode="singleTop">
+        </activity>
+
+        <activity android:name=".login.LogInActivity"
+            android:launchMode="singleTop">
+        </activity>
+
+        <activity android:name=".LandingActivity"
             android:exported="true"
             android:launchMode="singleTop">
+            <!-- application starting activity -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <service android:enabled="true" android:name="com.protect.safetylife.ScreenOnOffBackgroundService" />
+        <service android:enabled="true" android:name=".ScreenOnOffBackgroundService" />
 
     </application>
 

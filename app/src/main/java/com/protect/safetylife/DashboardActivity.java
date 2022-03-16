@@ -4,10 +4,6 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.animation.AnimationUtils;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,13 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 /**
     Main activity
 */
-public class ScreenOnOffActivity extends AppCompatActivity {
+public class DashboardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // setting visual layout
-        setContentView(R.layout.landing);
+        setContentView(R.layout.dashboard);
         // starting background service
         Intent backgroundService = new Intent(this, ScreenOnOffBackgroundService.class);
         // making sure the service is not running in multiple instances
@@ -31,22 +27,10 @@ public class ScreenOnOffActivity extends AppCompatActivity {
         // if the activity was opened from the notification background service
         // we are going to show the force close button
         Intent intent = getIntent();
-        if (intent != null && intent.getAction().equals("showForceClose")) {
+        if (intent != null && intent.getAction().equals("intentForceClose")) {
             showForceCloseButton();
             Toast.makeText(this, "apasat din notificare, aplicatia era inchisa", Toast.LENGTH_LONG).show();
         }
-
-        ImageView loginBtn = findViewById(R.id.button_white_fill);
-        ImageView signupBtn = findViewById(R.id.button_empty);
-
-        loginBtn.setOnClickListener(v -> {
-            loginBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
-        });
-
-        signupBtn.setOnClickListener(v -> {
-            signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
-        });
-
     }
     /**
      * METHOD NOT APPROVED, TO BE DISCUSSED

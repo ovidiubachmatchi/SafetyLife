@@ -17,6 +17,10 @@
             android:launchMode="singleTop">
         </activity>
 
+        <activity android:name=".signup.SignUpActivity"
+            android:launchMode="singleTop">
+        </activity>
+
         <activity android:name=".login.LogInActivity"
             android:launchMode="singleTop">
         </activity>

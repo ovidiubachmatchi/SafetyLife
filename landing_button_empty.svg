@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="321" height="68" viewBox="0 0 321 68">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #fff;
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        stroke: none;
+      }
+
+      .cls-4 {
+        filter: url(#landing_button_empty);
+      }
+    </style>
+    <filter id="landing_button_empty" x="0" y="0" width="321" height="68" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g class="cls-4" transform="matrix(1, 0, 0, 1, 0, 0)">
+    <g id="landing_button_empty-2" data-name="landing_button_empty" class="cls-1" transform="translate(8 6)">
+      <rect class="cls-2" width="303" height="50" rx="15"/>
+      <rect class="cls-3" x="1" y="1" width="301" height="48" rx="14"/>
+    </g>
+  </g>
+</svg>

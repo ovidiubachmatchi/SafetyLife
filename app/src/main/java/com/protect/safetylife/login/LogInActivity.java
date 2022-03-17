@@ -1,12 +1,16 @@
 package com.protect.safetylife.login;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.protect.safetylife.R;
 import com.protect.safetylife.animations.Animation;
@@ -19,6 +23,7 @@ public class LogInActivity extends AppCompatActivity {
         addButtonFunctionality();
         Animation.fadeInAfterDuration(findViewById(R.id.back), 600);
     }
+
 
     @Override
     public void finish() {
@@ -46,10 +51,11 @@ public class LogInActivity extends AppCompatActivity {
     private void checkCredentials() {
         EditText EmailAddress = findViewById(R.id.firstName);
         EditText Password = findViewById(R.id.dateOfBirth);
-        if(TextUtils.isEmpty(EmailAddress.getText().toString())
-                &&
-           TextUtils.isEmpty(Password.getText().toString())) {
-            //
+        if(TextUtils.isEmpty(EmailAddress.getText().toString())) {
+            EmailAddress.setBackground(AppCompatResources.getDrawable(this, R.drawable.login_signup_error_gray_input_box));
+        }
+        if(TextUtils.isEmpty(Password.getText().toString())) {
+
         }
     }
 

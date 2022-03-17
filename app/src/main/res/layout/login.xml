@@ -41,7 +41,7 @@
         android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_lleft_arrow" />
+        app:srcCompat="@drawable/icon_left_arrow" />
 
     <ImageView
         android:id="@+id/signupBtn"

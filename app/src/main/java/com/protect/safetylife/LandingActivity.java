@@ -13,6 +13,7 @@ import com.protect.safetylife.signup.SignUpActivity;
 
 public class LandingActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

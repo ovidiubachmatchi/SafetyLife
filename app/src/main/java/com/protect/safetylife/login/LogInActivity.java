@@ -9,22 +9,25 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.protect.safetylife.R;
+import com.protect.safetylife.animations.Animation;
 
 public class LogInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        addButtonsAnimation();
+        addButtonFunctionality();
+        Animation.fadeInAfterDuration(findViewById(R.id.back), 600);
     }
 
     @Override
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.back_slide_out_bottom, R.anim.back_slide_in_bottom);
+        Animation.fadeOut(findViewById(R.id.back), 0);
     }
 
-    private void addButtonsAnimation() {
+    private void addButtonFunctionality() {
         ImageView backBtn = findViewById(R.id.back);
         ImageView loginBtn = findViewById(R.id.signupBtn);
 
@@ -39,25 +42,14 @@ public class LogInActivity extends AppCompatActivity {
         });
 
     }
-
+    /** to be continued */
     private void checkCredentials() {
-        EditText EmailAddress = findViewById(R.id.editTextTextEmailAddress);
-        EditText Password = findViewById(R.id.editTextTextPassword);
+        EditText EmailAddress = findViewById(R.id.firstName);
+        EditText Password = findViewById(R.id.dateOfBirth);
         if(TextUtils.isEmpty(EmailAddress.getText().toString())
                 &&
-                TextUtils.isEmpty(Password.getText().toString())) {
-            EmailAddress.setHint("Enter your email address");
-            Password.setHint("Enter your password");
-            return;
-        }
-
-        if(TextUtils.isEmpty(EmailAddress.getText().toString())) {
-            EmailAddress.setHint("Enter your email address");
-            return;
-        }
-        if(TextUtils.isEmpty(Password.getText().toString())) {
-            Password.setHint("Enter your password");
-            return;
+           TextUtils.isEmpty(Password.getText().toString())) {
+            //
         }
     }
 

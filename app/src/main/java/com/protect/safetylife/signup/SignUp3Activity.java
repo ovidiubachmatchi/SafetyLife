@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -50,11 +52,16 @@ public class SignUp3Activity extends AppCompatActivity {
             finish();
         });
 
+        String[] countries = getResources().getStringArray(R.array.countries);
+        ArrayAdapter<String> countriesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, countries);
+        AutoCompleteTextView country = findViewById(R.id.country);
+        country.setAdapter(countriesAdapter);
+
     }
 
     private boolean validCredentials() {
         EditText street = findViewById(R.id.street);
-        EditText country = findViewById(R.id.country);
+//        EditText country = findViewById(R.id.country);
         EditText zipcode = findViewById(R.id.zipcode);
 
         boolean valid = true;
@@ -67,13 +74,13 @@ public class SignUp3Activity extends AppCompatActivity {
             validInputBox(street, this);
         }
 
-        if(TextUtils.isEmpty(country.getText().toString())) {
-            errorInputBox(country, this);
-            valid = false;
-        }
-        else {
-            validInputBox(country, this);
-        }
+//        if(TextUtils.isEmpty(country.getText().toString())) {
+//            errorInputBox(country, this);
+//            valid = false;
+//        }
+//        else {
+//            validInputBox(country, this);
+//        }
 
         if(TextUtils.isEmpty(zipcode.getText().toString())) {
             errorInputBox(zipcode, this);

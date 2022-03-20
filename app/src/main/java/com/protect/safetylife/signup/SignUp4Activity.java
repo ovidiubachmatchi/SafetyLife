@@ -2,6 +2,8 @@ package com.protect.safetylife.signup;
 
 import android.os.Bundle;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,17 +35,13 @@ public class SignUp4Activity extends AppCompatActivity {
 
         signupBtn.setOnClickListener(v -> {
             signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
-            checkCredentials();
+
         });
 
         backBtn.setOnClickListener(v -> {
             backBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
             finish();
         });
-
-    }
-
-    private void checkCredentials() {
 
     }
 

@@ -105,7 +105,7 @@
         app:layout_constraintTop_toTopOf="@+id/signupBtn"
         app:layout_constraintVertical_bias="0.478" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/country"
         android:layout_width="0dp"
         android:layout_height="50dp"
@@ -113,7 +113,7 @@
         android:layout_marginBottom="112dp"
         android:background="@drawable/login_signup_gray_input_box"
         android:ems="10"
-        android:inputType="textShortMessage|textCapWords"
+        android:inputType="textShortMessage|textAutoComplete|textCapWords"
         android:padding="15dp"
         android:textCursorDrawable="@drawable/edit_text_cursor"
         app:layout_constraintBottom_toTopOf="@+id/signupBtn"

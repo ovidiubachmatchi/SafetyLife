@@ -1,19 +1,21 @@
 package com.protect.safetylife.login;
 
-import android.graphics.drawable.Drawable;
+import static com.protect.safetylife.Utils.Utils.errorInputBox;
+import static com.protect.safetylife.Utils.Utils.validInputBox;
+
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.content.res.ResourcesCompat;
 
 import com.protect.safetylife.R;
-import com.protect.safetylife.animations.Animation;
+import com.protect.safetylife.Utils.Utils;
+
+import java.util.Objects;
 
 public class LogInActivity extends AppCompatActivity {
     @Override
@@ -21,7 +23,7 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         addButtonFunctionality();
-        Animation.fadeInAfterDuration(findViewById(R.id.back), 600);
+        Utils.fadeInAfterDuration(findViewById(R.id.back), 600);
     }
 
 
@@ -29,7 +31,7 @@ public class LogInActivity extends AppCompatActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.back_slide_out_bottom, R.anim.back_slide_in_bottom);
-        Animation.fadeOut(findViewById(R.id.back), 0);
+        Utils.fadeOut(findViewById(R.id.back), 0);
     }
 
     private void addButtonFunctionality() {
@@ -38,7 +40,9 @@ public class LogInActivity extends AppCompatActivity {
 
         loginBtn.setOnClickListener(v -> {
             loginBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
-            checkCredentials();
+            if (validCredentials()) {
+                //
+            }
         });
 
         backBtn.setOnClickListener(v -> {
@@ -48,15 +52,29 @@ public class LogInActivity extends AppCompatActivity {
 
     }
     /** to be continued */
-    private void checkCredentials() {
-        EditText EmailAddress = findViewById(R.id.firstName);
-        EditText Password = findViewById(R.id.dateOfBirth);
-        if(TextUtils.isEmpty(EmailAddress.getText().toString())) {
-            EmailAddress.setBackground(AppCompatResources.getDrawable(this, R.drawable.login_signup_error_gray_input_box));
-        }
-        if(TextUtils.isEmpty(Password.getText().toString())) {
+    private boolean validCredentials() {
+        EditText emailAddress = findViewById(R.id.emailLogin);
+        EditText password = findViewById(R.id.passwordLogin);
 
+        boolean valid = true;
+
+        if(TextUtils.isEmpty(emailAddress.getText().toString())) {
+            errorInputBox(emailAddress, this);
+            valid = false;
         }
+        else {
+            validInputBox(emailAddress, this);
+        }
+
+        if(TextUtils.isEmpty(password.getText().toString())) {
+            errorInputBox(password, this);
+            valid = false;
+        }
+        else {
+            validInputBox(password, this);
+        }
+
+        return valid;
     }
 
 }

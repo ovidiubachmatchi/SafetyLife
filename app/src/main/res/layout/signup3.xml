@@ -16,8 +16,8 @@
         android:textColor="#000000"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/lastName"
-        app:layout_constraintStart_toStartOf="@+id/lastName" />
+        app:layout_constraintBottom_toTopOf="@+id/street"
+        app:layout_constraintStart_toStartOf="@+id/street" />
 
     <TextView
         android:id="@+id/textView5"
@@ -63,8 +63,8 @@
         android:textColor="#969696"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/lastName"
-        app:layout_constraintStart_toStartOf="@+id/lastName" />
+        app:layout_constraintBottom_toTopOf="@+id/street"
+        app:layout_constraintStart_toStartOf="@+id/street" />
 
     <TextView
         android:id="@+id/textView12"
@@ -75,8 +75,8 @@
         android:textColor="#969696"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/dateOfBirth"
-        app:layout_constraintStart_toStartOf="@+id/dateOfBirth" />
+        app:layout_constraintBottom_toTopOf="@+id/country"
+        app:layout_constraintStart_toStartOf="@+id/country" />
 
     <TextView
         android:id="@+id/textView13"
@@ -87,8 +87,8 @@
         android:textColor="#969696"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/sex"
-        app:layout_constraintStart_toStartOf="@+id/sex" />
+        app:layout_constraintBottom_toTopOf="@+id/zipcode"
+        app:layout_constraintStart_toStartOf="@+id/zipcode" />
 
     <TextView
         android:id="@+id/textView11"
@@ -106,48 +106,49 @@
         app:layout_constraintVertical_bias="0.478" />
 
     <EditText
-        android:id="@+id/dateOfBirth"
+        android:id="@+id/country"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="112dp"
         android:background="@drawable/login_signup_gray_input_box"
         android:ems="10"
-        android:inputType="date"
+        android:inputType="textShortMessage|textCapWords"
         android:padding="15dp"
         android:textCursorDrawable="@drawable/edit_text_cursor"
         app:layout_constraintBottom_toTopOf="@+id/signupBtn"
-        app:layout_constraintEnd_toStartOf="@+id/sex"
+        app:layout_constraintEnd_toStartOf="@+id/zipcode"
         app:layout_constraintStart_toStartOf="@+id/signupBtn"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <Spinner
-        android:id="@+id/sex"
+    <EditText
+        android:id="@+id/zipcode"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
         android:background="@drawable/login_signup_gray_input_box"
         android:ems="10"
+        android:inputType="textShortMessage"
         android:padding="15dp"
         android:spinnerMode="dropdown"
         android:textCursorDrawable="@drawable/edit_text_cursor"
-        app:layout_constraintBottom_toBottomOf="@+id/dateOfBirth"
+        app:layout_constraintBottom_toBottomOf="@+id/country"
         app:layout_constraintEnd_toEndOf="@+id/signupBtn"
-        app:layout_constraintStart_toEndOf="@+id/dateOfBirth"
+        app:layout_constraintStart_toEndOf="@+id/country"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/lastName"
+        android:id="@+id/street"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/login_signup_gray_input_box"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPostalAddress|textCapWords"
         android:padding="15dp"
         android:textCursorDrawable="@drawable/edit_text_cursor"
-        app:layout_constraintBottom_toTopOf="@+id/dateOfBirth"
+        app:layout_constraintBottom_toTopOf="@+id/country"
         app:layout_constraintEnd_toEndOf="@+id/signupBtn"
-        app:layout_constraintStart_toStartOf="@+id/dateOfBirth"
+        app:layout_constraintStart_toStartOf="@+id/country"
         tools:ignore="SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

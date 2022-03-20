@@ -1,5 +1,8 @@
 package com.protect.safetylife.signup;
 
+import static com.protect.safetylife.Utils.Utils.errorInputBox;
+import static com.protect.safetylife.Utils.Utils.validInputBox;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,9 +11,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 
 import com.protect.safetylife.R;
-import com.protect.safetylife.animations.Animation;
+import com.protect.safetylife.Utils.Utils;
+
+import java.util.Objects;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -19,7 +25,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
         addButtonFunctionality();
-        Animation.fadeInAfterDuration(findViewById(R.id.back), 450);
+        Utils.fadeInAfterDuration(findViewById(R.id.back), 450);
     }
 
 
@@ -27,7 +33,7 @@ public class SignUpActivity extends AppCompatActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.back_slide_out_bottom, R.anim.back_slide_in_bottom);
-        Animation.fadeOut(findViewById(R.id.back), 100);
+        Utils.fadeOut(findViewById(R.id.back), 100);
     }
 
     private void addButtonFunctionality() {
@@ -50,14 +56,37 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private boolean validCredentials() {
-        EditText EmailAddress = findViewById(R.id.firstName);
-        EditText Password = findViewById(R.id.dateOfBirth);
-        if(TextUtils.isEmpty(EmailAddress.getText().toString())
-                &&
-           TextUtils.isEmpty(Password.getText().toString())) {
-            //
+        EditText emailAddress = findViewById(R.id.email);
+        EditText password = findViewById(R.id.password);
+        EditText repeatPassword = findViewById(R.id.repeatPassword);
+
+        boolean valid = true;
+
+        if(TextUtils.isEmpty(emailAddress.getText().toString())) {
+            errorInputBox(emailAddress, this);
+            valid = false;
         }
-        return true;
+        else {
+            validInputBox(emailAddress, this);
+        }
+
+        if(TextUtils.isEmpty(password.getText().toString())) {
+            errorInputBox(password, this);
+            valid = false;
+        }
+        else {
+            validInputBox(password, this);
+        }
+
+        if(TextUtils.isEmpty(repeatPassword.getText().toString())) {
+            errorInputBox(repeatPassword, this);
+            valid = false;
+        }
+        else {
+            validInputBox(repeatPassword, this);
+        }
+
+        return valid;
     }
 
 

@@ -16,8 +16,8 @@
         android:textColor="#000000"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/firstName"
-        app:layout_constraintStart_toStartOf="@+id/firstName" />
+        app:layout_constraintBottom_toTopOf="@+id/firstname"
+        app:layout_constraintStart_toStartOf="@+id/firstname" />
 
     <TextView
         android:id="@+id/textView5"
@@ -105,8 +105,8 @@
         android:textColor="#78909C"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/firstName"
-        app:layout_constraintStart_toStartOf="@+id/firstName" />
+        app:layout_constraintBottom_toTopOf="@+id/firstname"
+        app:layout_constraintStart_toStartOf="@+id/firstname" />
 
     <TextView
         android:id="@+id/textView11"
@@ -124,7 +124,7 @@
         app:layout_constraintVertical_bias="0.478" />
 
     <EditText
-        android:id="@+id/firstName"
+        android:id="@+id/firstname"
         android:layout_width="0dp"
         android:layout_height="50dp"
 
@@ -132,7 +132,7 @@
         android:autofillHints=""
         android:background="@drawable/login_signup_gray_input_box"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPersonName|textCapWords"
         android:padding="15dp"
         android:textCursorDrawable="@drawable/edit_text_cursor"
         app:layout_constraintBottom_toTopOf="@+id/lastName"
@@ -145,6 +145,10 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginEnd="10dp"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:layout_marginBottom="64dp"
         android:background="@drawable/login_signup_gray_input_box"
         android:ems="10"
@@ -178,14 +182,14 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginBottom="40dp"
+        android:autofillHints=""
         android:background="@drawable/login_signup_gray_input_box"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPersonName|textCapWords"
         android:padding="15dp"
         android:textCursorDrawable="@drawable/edit_text_cursor"
         app:layout_constraintBottom_toTopOf="@+id/dateOfBirth"
         app:layout_constraintEnd_toEndOf="@+id/signupBtn"
         app:layout_constraintStart_toStartOf="@+id/dateOfBirth"
-        tools:ignore="SpeakableTextPresentCheck"
-        android:autofillHints="" />
+        tools:ignore="SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

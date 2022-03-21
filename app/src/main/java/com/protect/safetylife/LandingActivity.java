@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.protect.safetylife.login.LogInActivity;
-import com.protect.safetylife.signup.SignUpActivity;
+import com.protect.safetylife.signup.SignUp1Activity;
 
 public class LandingActivity extends AppCompatActivity {
 
@@ -40,7 +40,7 @@ public class LandingActivity extends AppCompatActivity {
 
         signupBtn.setOnClickListener(v -> {
             signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
-            Intent intent = new Intent(this, SignUpActivity.class);
+            Intent intent = new Intent(this, SignUp1Activity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom);
         });

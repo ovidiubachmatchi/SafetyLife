@@ -85,7 +85,7 @@ public class ScreenOnOffBackgroundService extends Service {
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
         Notification notification = notificationBuilder.setOngoing(true)
-                .setSmallIcon(R.drawable.icon_plus)
+                .setSmallIcon(R.drawable.icon)
                 .setColor(Color.GRAY)
                 .setContentTitle("SafetyLife is running in background")
                 .setContentText("Click to stop the application") // to be modified
@@ -106,5 +106,6 @@ public class ScreenOnOffBackgroundService extends Service {
             unregisterReceiver(screenOnOffReceiver);
             Log.d("SCREEN_TOGGLE_TAG", "Service onDestroy: screenOnOffReceiver is unregistered.");
         }
+
     }
 }

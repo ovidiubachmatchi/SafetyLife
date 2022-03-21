@@ -11,19 +11,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
 
 import com.protect.safetylife.R;
 import com.protect.safetylife.Utils.Utils;
 
-import java.util.Objects;
-
-public class SignUpActivity extends AppCompatActivity {
+public class SignUp1Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signup);
+        setContentView(R.layout.signup1);
         addButtonFunctionality();
         Utils.fadeInAfterDuration(findViewById(R.id.back), 450);
     }

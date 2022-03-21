@@ -27,7 +27,7 @@ public class DashboardActivity extends AppCompatActivity {
         // if the activity was opened from the notification background service
         // we are going to show the force close button
         Intent intent = getIntent();
-        if (intent != null && intent.getAction().equals("intentForceClose")) {
+        if (intent != null && "intentForceClose".equals(intent.getAction())) {
             showForceCloseButton();
             Toast.makeText(this, "apasat din notificare, aplicatia era inchisa", Toast.LENGTH_LONG).show();
         }
@@ -41,8 +41,8 @@ public class DashboardActivity extends AppCompatActivity {
 //        Button forceClose = findViewById(R.id.forceCloseButton);
 //        forceClose.setVisibility(View.VISIBLE);
 //        forceClose.setOnClickListener(v -> {
-            finish();
-            System.exit(0);
+//            finish();
+//            System.exit(0);
 //        });
     }
     @Override
@@ -66,7 +66,7 @@ public class DashboardActivity extends AppCompatActivity {
     private boolean isMyServiceRunning(Class<?> serviceClass) {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo serviceIterator : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.getName().equals(serviceIterator.service.getClassName())) {
+            if (serviceIterator.service.getClassName() != null && serviceClass.getName() != null && serviceClass.getName().equals(serviceIterator.service.getClassName())) {
                 return true;
             }
         }
@@ -77,5 +77,7 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         // activity destroyed
+        // TODO
+        // If user is not logged, destroy ScreenOnOffServiee
     }
 }

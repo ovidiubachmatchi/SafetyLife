@@ -1,7 +1,7 @@
 package com.protect.safetylife.signup;
 
-import static com.protect.safetylife.Utils.Utils.errorInputBox;
-import static com.protect.safetylife.Utils.Utils.validInputBox;
+import static com.protect.safetylife.utils.Animation.errorInputBox;
+import static com.protect.safetylife.utils.Animation.validInputBox;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.protect.safetylife.R;
-import com.protect.safetylife.Utils.Utils;
+import com.protect.safetylife.utils.Animation;
 
 public class SignUp3Activity extends AppCompatActivity {
 
@@ -24,14 +24,14 @@ public class SignUp3Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup3);
         addButtonFunctionality();
-        Utils.fadeInAfterDuration(findViewById(R.id.back), 450);
+        Animation.fadeInAfterDuration(findViewById(R.id.back), 450);
     }
 
     @Override
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.back_slide_out_bottom, R.anim.back_slide_in_bottom);
-        Utils.fadeOut(findViewById(R.id.back), 10);
+        Animation.fadeOut(findViewById(R.id.back), 10);
     }
 
     private void addButtonFunctionality() {

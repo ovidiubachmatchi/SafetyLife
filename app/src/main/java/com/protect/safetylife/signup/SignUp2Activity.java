@@ -1,7 +1,7 @@
 package com.protect.safetylife.signup;
 
-import static com.protect.safetylife.Utils.Utils.errorInputBox;
-import static com.protect.safetylife.Utils.Utils.validInputBox;
+import static com.protect.safetylife.utils.Animation.errorInputBox;
+import static com.protect.safetylife.utils.Animation.validInputBox;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -20,9 +19,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.datepicker.MaterialDatePicker;
 import com.protect.safetylife.R;
-import com.protect.safetylife.Utils.Utils;
+import com.protect.safetylife.utils.Animation;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -36,7 +34,7 @@ public class SignUp2Activity extends AppCompatActivity {
         setContentView(R.layout.signup2);
         addButtonFunctionality();
         addInputFunctionality();
-        Utils.fadeInAfterDuration(findViewById(R.id.back), 450);
+        Animation.fadeInAfterDuration(findViewById(R.id.back), 450);
     }
 
     private void addInputFunctionality() {
@@ -52,12 +50,7 @@ public class SignUp2Activity extends AppCompatActivity {
 
         EditText datePicker = findViewById(R.id.dateOfBirth);
 
-        MaterialDatePicker<Long> datePickerBuilder = MaterialDatePicker.Builder.datePicker()
-                        .setInputMode(MaterialDatePicker.INPUT_MODE_TEXT)
-                        .build();
-
         datePicker.setOnClickListener(v -> new DatePickerDialog(this,date,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show());
-
 
         Spinner dropdown = findViewById(R.id.sex);
         String[] items = new String[]{"", "Male", "Female"};
@@ -94,7 +87,7 @@ public class SignUp2Activity extends AppCompatActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.back_slide_out_bottom, R.anim.back_slide_in_bottom);
-        Utils.fadeOut(findViewById(R.id.back), 10);
+        Animation.fadeOut(findViewById(R.id.back), 10);
     }
 
     private void addButtonFunctionality() {

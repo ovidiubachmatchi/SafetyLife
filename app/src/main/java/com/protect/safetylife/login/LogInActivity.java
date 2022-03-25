@@ -1,7 +1,7 @@
 package com.protect.safetylife.login;
 
-import static com.protect.safetylife.Utils.Utils.errorInputBox;
-import static com.protect.safetylife.Utils.Utils.validInputBox;
+import static com.protect.safetylife.utils.Animation.errorInputBox;
+import static com.protect.safetylife.utils.Animation.validInputBox;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,12 +10,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
 
 import com.protect.safetylife.R;
-import com.protect.safetylife.Utils.Utils;
-
-import java.util.Objects;
+import com.protect.safetylife.utils.Animation;
 
 public class LogInActivity extends AppCompatActivity {
     @Override
@@ -23,7 +20,7 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         addButtonFunctionality();
-        Utils.fadeInAfterDuration(findViewById(R.id.back), 600);
+        Animation.fadeInAfterDuration(findViewById(R.id.back), 600);
     }
 
 
@@ -31,7 +28,7 @@ public class LogInActivity extends AppCompatActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.back_slide_out_bottom, R.anim.back_slide_in_bottom);
-        Utils.fadeOut(findViewById(R.id.back), 0);
+        Animation.fadeOut(findViewById(R.id.back), 0);
     }
 
     private void addButtonFunctionality() {

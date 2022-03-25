@@ -1,19 +1,17 @@
 package com.protect.safetylife.signup;
 
-import static com.protect.safetylife.Utils.Utils.errorInputBox;
-import static com.protect.safetylife.Utils.Utils.validInputBox;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.protect.safetylife.utils.Credentials;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.protect.safetylife.R;
-import com.protect.safetylife.Utils.Utils;
+import com.protect.safetylife.utils.Animation;
 
 public class SignUp1Activity extends AppCompatActivity {
 
@@ -22,7 +20,7 @@ public class SignUp1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup1);
         addButtonFunctionality();
-        Utils.fadeInAfterDuration(findViewById(R.id.back), 450);
+        Animation.fadeInAfterDuration(findViewById(R.id.back), 450);
     }
 
 
@@ -30,7 +28,7 @@ public class SignUp1Activity extends AppCompatActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.back_slide_out_bottom, R.anim.back_slide_in_bottom);
-        Utils.fadeOut(findViewById(R.id.back), 100);
+        Animation.fadeOut(findViewById(R.id.back), 100);
     }
 
     private void addButtonFunctionality() {
@@ -57,34 +55,7 @@ public class SignUp1Activity extends AppCompatActivity {
         EditText password = findViewById(R.id.password);
         EditText repeatPassword = findViewById(R.id.repeatPassword);
 
-        boolean valid = true;
-
-        if(TextUtils.isEmpty(emailAddress.getText().toString())) {
-            errorInputBox(emailAddress, this);
-            valid = false;
-        }
-        else {
-            validInputBox(emailAddress, this);
-        }
-
-        if(TextUtils.isEmpty(password.getText().toString())) {
-            errorInputBox(password, this);
-            valid = false;
-        }
-        else {
-            validInputBox(password, this);
-        }
-
-        if(TextUtils.isEmpty(repeatPassword.getText().toString())) {
-            errorInputBox(repeatPassword, this);
-            valid = false;
-        }
-        else {
-            validInputBox(repeatPassword, this);
-        }
-
-        return valid;
+        if(Credentials.areEmpty(this, emailAddress, password, repeatPassword));
+            return false;
     }
-
-
 }

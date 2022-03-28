@@ -19,6 +19,7 @@
     <string name="date_of_birth">Date of birth</string>
     <string name="last_name">Last name</string>
     <string name="back">back</string>
+    <string name="safety_watch_time">Safety watch\ntime</string>
     <string-array name="countries">
         <item>Afghanistan</item>
         <item>Aland Islands</item>

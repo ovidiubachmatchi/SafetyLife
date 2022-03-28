@@ -36,7 +36,7 @@ public class SignUp1Activity extends AppCompatActivity {
         ImageView signupBtn = findViewById(R.id.signupBtn);
 
         signupBtn.setOnClickListener(v -> {
-            signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
+            signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
             if (validCredentials()) {
                 Intent intent = new Intent(this, SignUp2Activity.class);
                 startActivity(intent);
@@ -45,7 +45,7 @@ public class SignUp1Activity extends AppCompatActivity {
         });
 
         backBtn.setOnClickListener(v -> {
-            backBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
+            backBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
             finish();
         });
     }
@@ -55,7 +55,8 @@ public class SignUp1Activity extends AppCompatActivity {
         EditText password = findViewById(R.id.password);
         EditText repeatPassword = findViewById(R.id.repeatPassword);
 
-        if(Credentials.areEmpty(this, emailAddress, password, repeatPassword));
-            return false;
+        boolean valid = Credentials.isEmpty(this, emailAddress, password, repeatPassword);
+
+        return valid;
     }
 }

@@ -22,5 +22,4 @@ atunci cand modul SOS este activat
 - Inregistrarea audio/video cand modul SOS este activat
 - Fake Calls( apel telefonic fals, folosit ca scuză pentru a ieși dintr-o
 situație primejdioasa )
-- Facerea pozelor cand gresesti parola la tel
 - Permite utilizatorilor să seteze mementouri pentru medicamente sau activitati```

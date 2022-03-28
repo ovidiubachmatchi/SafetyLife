@@ -1,12 +1,17 @@
-package com.protect.safetylife;
+package com.protect.safetylife.dashboard;
 
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.protect.safetylife.R;
+import com.protect.safetylife.login.LogInActivity;
+import com.protect.safetylife.powerbutton.ScreenOnOffBackgroundService;
 
 /**
     Main activity
@@ -17,7 +22,7 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // setting visual layout
-        setContentView(R.layout.dashboard);
+        setContentView(R.layout.menu);
         // starting background service
         Intent backgroundService = new Intent(this, ScreenOnOffBackgroundService.class);
         // making sure the service is not running in multiple instances
@@ -29,8 +34,26 @@ public class DashboardActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null && "intentForceClose".equals(intent.getAction())) {
             showForceCloseButton();
-            Toast.makeText(this, "apasat din notificare, aplicatia era inchisa", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,
+                    "apasat din notificare, aplicatia era inchisa",
+                    Toast.LENGTH_LONG).show();
         }
+
+        ImageView sosBtn = findViewById(R.id.sosBtn);
+        ImageView watchBtn = findViewById(R.id.watchBtn);
+        ImageView locationBtn = findViewById(R.id.locationBtn);
+        ImageView cameraBtn = findViewById(R.id.cameraBtn);
+        ImageView stealBtn = findViewById(R.id.stealBtn);
+        ImageView reminderBtn = findViewById(R.id.reminderBtn);
+        ImageView fakeCallBtn = findViewById(R.id.fakeCallBtn);
+
+
+        sosBtn.setOnClickListener(v -> {
+            Intent intentChange = new Intent(this, SosMenu.class);
+            startActivity(intentChange);
+            overridePendingTransition(R.anim.slide_down_foreground, R.anim.slide_down_background);
+        });
+
     }
     /**
      * METHOD NOT APPROVED, TO BE DISCUSSED
@@ -52,7 +75,9 @@ public class DashboardActivity extends AppCompatActivity {
         // but the activity was already running, we are going to show the force close button
         if (intent != null && intent.getAction().equals("showForceClose")) {
             showForceCloseButton();
-            Toast.makeText(this, "apasat din notificare, aplicatia era deschisa", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,
+                    "apasat din notificare, aplicatia era deschisa",
+                    Toast.LENGTH_LONG).show();
         }
     }
     /**

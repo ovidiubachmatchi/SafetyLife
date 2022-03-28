@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.protect.safetylife.dashboard.DashboardActivity;
 import com.protect.safetylife.login.LogInActivity;
 import com.protect.safetylife.signup.SignUp1Activity;
 
@@ -28,18 +29,20 @@ public class LandingActivity extends AppCompatActivity {
         TextView skipLoginBtn = findViewById(R.id.skipLoginBtn);
 
         skipLoginBtn.setOnClickListener(v -> {
-            skipLoginBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
+            skipLoginBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
+            Intent intent = new Intent(this, DashboardActivity.class);
+            startActivity(intent);
         });
 
         loginBtn.setOnClickListener(v -> {
-            loginBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
+            loginBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
             Intent intent = new Intent(this, LogInActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom);
         });
 
         signupBtn.setOnClickListener(v -> {
-            signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
+            signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
             Intent intent = new Intent(this, SignUp1Activity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom);

@@ -32,12 +32,12 @@ public class SignUp4Activity extends AppCompatActivity {
         ImageView signupBtn = findViewById(R.id.signupBtn);
 
         signupBtn.setOnClickListener(v -> {
-            signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
+            signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
 
         });
 
         backBtn.setOnClickListener(v -> {
-            backBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
+            backBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
             finish();
         });
 

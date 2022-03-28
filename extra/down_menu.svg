@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="390" height="845" viewBox="0 0 390 845">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#645dcd"/>
+      <stop offset="0.664" stop-color="#5c55be"/>
+      <stop offset="1" stop-color="#5852b5"/>
+    </linearGradient>
+  </defs>
+  <g id="down_menu" transform="translate(0 1)">
+    <g id="down_menu-2" data-name="down_menu" transform="translate(0 -1)" fill="red" stroke="#707070" stroke-width="1">
+      <rect width="390" height="845" stroke="none"/>
+      <rect x="0.5" y="0.5" width="389" height="844" fill="none"/>
+    </g>
+    <g id="down_menu-3" data-name="down_menu" transform="translate(0 -1)" stroke="#707070" stroke-width="1" fill="url(#linear-gradient)">
+      <path d="M0,0H390a0,0,0,0,1,0,0V695a30,30,0,0,1-30,30H30A30,30,0,0,1,0,695V0A0,0,0,0,1,0,0Z" stroke="none"/>
+      <path d="M.5.5h389a0,0,0,0,1,0,0V695A29.5,29.5,0,0,1,360,724.5H30A29.5,29.5,0,0,1,.5,695V.5A0,0,0,0,1,.5.5Z" fill="none"/>
+    </g>
+  </g>
+</svg>

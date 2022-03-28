@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.protect.safetylife.R;
 import com.protect.safetylife.utils.Animation;
+import com.protect.safetylife.utils.Credentials;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -39,19 +40,12 @@ public class SignUp2Activity extends AppCompatActivity {
 
     private void addInputFunctionality() {
 
-        final Calendar myCalendar= Calendar.getInstance();
+        addDateOfBirthInputFunctionality();
 
-        DatePickerDialog.OnDateSetListener date = (view, year, month, day) -> {
-            myCalendar.set(Calendar.YEAR, year);
-            myCalendar.set(Calendar.MONTH,month);
-            myCalendar.set(Calendar.DAY_OF_MONTH,day);
-            updateLabel(myCalendar);
-        };
+        addSexInputFunctionality();
+    }
 
-        EditText datePicker = findViewById(R.id.dateOfBirth);
-
-        datePicker.setOnClickListener(v -> new DatePickerDialog(this,date,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show());
-
+    private void addSexInputFunctionality() {
         Spinner dropdown = findViewById(R.id.sex);
         String[] items = new String[]{"", "Male", "Female"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items){
@@ -76,11 +70,22 @@ public class SignUp2Activity extends AppCompatActivity {
         dropdown.setAdapter(adapter);
     }
 
-    private void updateLabel(Calendar myCalendar){
-        String myFormat="MM/dd/yy";
-        SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.US);
+    private void addDateOfBirthInputFunctionality() {
+        final Calendar myCalendar= Calendar.getInstance();
+
+        DatePickerDialog.OnDateSetListener date = (view, year, month, day) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH,month);
+            myCalendar.set(Calendar.DAY_OF_MONTH,day);
+            String myFormat="MM/dd/yy";
+            SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.US);
+            EditText datePicker = findViewById(R.id.dateOfBirth);
+            datePicker.setText(dateFormat.format(myCalendar.getTime()));
+        };
+
         EditText datePicker = findViewById(R.id.dateOfBirth);
-        datePicker.setText(dateFormat.format(myCalendar.getTime()));
+
+        datePicker.setOnClickListener(v -> new DatePickerDialog(this,date,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show());
     }
 
     @Override
@@ -95,7 +100,7 @@ public class SignUp2Activity extends AppCompatActivity {
         ImageView signupBtn = findViewById(R.id.signupBtn);
 
         signupBtn.setOnClickListener(v -> {
-            signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
+            signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
             if (validCredentials()) {
                 Intent intent = new Intent(this, SignUp3Activity.class);
                 startActivity(intent);
@@ -104,7 +109,7 @@ public class SignUp2Activity extends AppCompatActivity {
         });
 
         backBtn.setOnClickListener(v -> {
-            backBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
+            backBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
             finish();
         });
 
@@ -116,40 +121,10 @@ public class SignUp2Activity extends AppCompatActivity {
         EditText dateOfBirth = findViewById(R.id.dateOfBirth);
         Spinner sex = findViewById(R.id.sex);
 
-        boolean valid = true;
+        boolean valid;
 
-        if(TextUtils.isEmpty(firstName.getText().toString())) {
-            errorInputBox(firstName, this);
-
-            valid = false;
-        }
-        else {
-            validInputBox(firstName, this);
-        }
-
-        if(TextUtils.isEmpty(lastName.getText().toString())) {
-            errorInputBox(lastName, this);
-            valid = false;
-        }
-        else {
-            validInputBox(lastName, this);
-        }
-
-        if(TextUtils.isEmpty(dateOfBirth.getText().toString())) {
-            errorInputBox(dateOfBirth, this);
-            valid = false;
-        }
-        else {
-            validInputBox(dateOfBirth, this);
-        }
-
-        if(TextUtils.isEmpty(String.valueOf(sex.getSelectedItem()))) {
-            errorInputBox(sex, this);
-            valid = false;
-        }
-        else {
-            validInputBox(sex, this);
-        }
+        valid = Credentials.isEmpty(this, firstName, lastName, dateOfBirth);
+        valid &= Credentials.isEmpty(this, sex);
 
         return valid;
     }

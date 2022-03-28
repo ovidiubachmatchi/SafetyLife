@@ -1,11 +1,7 @@
 package com.protect.safetylife.signup;
 
-import static com.protect.safetylife.utils.Animation.errorInputBox;
-import static com.protect.safetylife.utils.Animation.validInputBox;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -16,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.protect.safetylife.R;
 import com.protect.safetylife.utils.Animation;
+import com.protect.safetylife.utils.Credentials;
 
 public class SignUp3Activity extends AppCompatActivity {
 
@@ -39,7 +36,7 @@ public class SignUp3Activity extends AppCompatActivity {
         ImageView signupBtn = findViewById(R.id.signupBtn);
 
         signupBtn.setOnClickListener(v -> {
-            signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
+            signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
             if (validCredentials()) {
                 Intent intent = new Intent(this, SignUp4Activity.class);
                 startActivity(intent);
@@ -48,7 +45,7 @@ public class SignUp3Activity extends AppCompatActivity {
         });
 
         backBtn.setOnClickListener(v -> {
-            backBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
+            backBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
             finish();
         });
 
@@ -61,34 +58,10 @@ public class SignUp3Activity extends AppCompatActivity {
 
     private boolean validCredentials() {
         EditText street = findViewById(R.id.street);
-//        EditText country = findViewById(R.id.country);
+        EditText country = findViewById(R.id.country);
         EditText zipcode = findViewById(R.id.zipcode);
 
-        boolean valid = true;
-
-        if(TextUtils.isEmpty(street.getText().toString())) {
-            errorInputBox(street, this);
-            valid = false;
-        }
-        else {
-            validInputBox(street, this);
-        }
-
-//        if(TextUtils.isEmpty(country.getText().toString())) {
-//            errorInputBox(country, this);
-//            valid = false;
-//        }
-//        else {
-//            validInputBox(country, this);
-//        }
-
-        if(TextUtils.isEmpty(zipcode.getText().toString())) {
-            errorInputBox(zipcode, this);
-            valid = false;
-        }
-        else {
-            validInputBox(zipcode, this);
-        }
+        boolean valid = Credentials.isEmpty(this, street, country, zipcode);
 
         return valid;
     }

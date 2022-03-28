@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.protect.safetylife.R;
 import com.protect.safetylife.utils.Animation;
+import com.protect.safetylife.utils.Credentials;
 
 public class LogInActivity extends AppCompatActivity {
     @Override
@@ -36,40 +37,24 @@ public class LogInActivity extends AppCompatActivity {
         ImageView loginBtn = findViewById(R.id.signupBtn);
 
         loginBtn.setOnClickListener(v -> {
-            loginBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
+            loginBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
             if (validCredentials()) {
                 //
             }
         });
 
         backBtn.setOnClickListener(v -> {
-            backBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imageviewbutton));
+            backBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
             finish();
         });
 
     }
-    /** to be continued */
+
     private boolean validCredentials() {
         EditText emailAddress = findViewById(R.id.emailLogin);
         EditText password = findViewById(R.id.passwordLogin);
 
-        boolean valid = true;
-
-        if(TextUtils.isEmpty(emailAddress.getText().toString())) {
-            errorInputBox(emailAddress, this);
-            valid = false;
-        }
-        else {
-            validInputBox(emailAddress, this);
-        }
-
-        if(TextUtils.isEmpty(password.getText().toString())) {
-            errorInputBox(password, this);
-            valid = false;
-        }
-        else {
-            validInputBox(password, this);
-        }
+        boolean valid = Credentials.isEmpty(this, emailAddress, password);
 
         return valid;
     }

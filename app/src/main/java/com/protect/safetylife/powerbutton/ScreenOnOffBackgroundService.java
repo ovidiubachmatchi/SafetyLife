@@ -1,4 +1,4 @@
-package com.protect.safetylife;
+package com.protect.safetylife.powerbutton;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -16,6 +16,9 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
+
+import com.protect.safetylife.dashboard.DashboardActivity;
+import com.protect.safetylife.R;
 
 
 public class ScreenOnOffBackgroundService extends Service {
@@ -85,7 +88,7 @@ public class ScreenOnOffBackgroundService extends Service {
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
         Notification notification = notificationBuilder.setOngoing(true)
-                .setSmallIcon(R.drawable.icon)
+                .setSmallIcon(R.drawable.ic_stat_name)
                 .setColor(Color.GRAY)
                 .setContentTitle("SafetyLife is running in background")
                 .setContentText("Click to stop the application") // to be modified

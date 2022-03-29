@@ -16,7 +16,7 @@ public class SignUp4Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup4);
         addButtonFunctionality();
-        Animation.fadeInAfterDuration(findViewById(R.id.back), 450);
+        Animation.fadeIn(findViewById(R.id.back), 450);
     }
 
 

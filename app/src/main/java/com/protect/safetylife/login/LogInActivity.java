@@ -1,10 +1,6 @@
 package com.protect.safetylife.login;
 
-import static com.protect.safetylife.utils.Animation.errorInputBox;
-import static com.protect.safetylife.utils.Animation.validInputBox;
-
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,7 +17,7 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         addButtonFunctionality();
-        Animation.fadeInAfterDuration(findViewById(R.id.back), 600);
+        Animation.fadeIn(findViewById(R.id.back), 600);
     }
 
 

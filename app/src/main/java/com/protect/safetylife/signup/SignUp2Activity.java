@@ -1,12 +1,8 @@
 package com.protect.safetylife.signup;
 
-import static com.protect.safetylife.utils.Animation.errorInputBox;
-import static com.protect.safetylife.utils.Animation.validInputBox;
-
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
@@ -35,7 +31,7 @@ public class SignUp2Activity extends AppCompatActivity {
         setContentView(R.layout.signup2);
         addButtonFunctionality();
         addInputFunctionality();
-        Animation.fadeInAfterDuration(findViewById(R.id.back), 450);
+        Animation.fadeIn(findViewById(R.id.back), 450);
     }
 
     private void addInputFunctionality() {
@@ -126,7 +122,7 @@ public class SignUp2Activity extends AppCompatActivity {
         valid = Credentials.isEmpty(this, firstName, lastName, dateOfBirth);
         valid &= Credentials.isEmpty(this, sex);
 
-        return valid;
+        return !valid;
     }
 
 

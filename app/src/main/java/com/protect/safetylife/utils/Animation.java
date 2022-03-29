@@ -13,7 +13,7 @@ import java.util.Objects;
 
 public class Animation {
 
-    public static void fadeInAfterDuration(View view, int duration) {
+    public static void fadeIn(View view, int duration) {
         view.setAlpha(0f);
         view.postDelayed(() -> view.animate()
                 .alpha(1.0f), duration);

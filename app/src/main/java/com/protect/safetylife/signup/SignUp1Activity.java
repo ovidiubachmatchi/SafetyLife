@@ -20,7 +20,7 @@ public class SignUp1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup1);
         addButtonFunctionality();
-        Animation.fadeInAfterDuration(findViewById(R.id.back), 450);
+        Animation.fadeIn(findViewById(R.id.back), 450);
     }
 
 
@@ -57,6 +57,6 @@ public class SignUp1Activity extends AppCompatActivity {
 
         boolean valid = Credentials.isEmpty(this, emailAddress, password, repeatPassword);
 
-        return valid;
+        return !valid;
     }
 }

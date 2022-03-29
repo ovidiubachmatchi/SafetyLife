@@ -21,7 +21,7 @@ public class SignUp3Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup3);
         addButtonFunctionality();
-        Animation.fadeInAfterDuration(findViewById(R.id.back), 450);
+        Animation.fadeIn(findViewById(R.id.back), 450);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class SignUp3Activity extends AppCompatActivity {
 
         boolean valid = Credentials.isEmpty(this, street, country, zipcode);
 
-        return valid;
+        return !valid;
     }
 
 }

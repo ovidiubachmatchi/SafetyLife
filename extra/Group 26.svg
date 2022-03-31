@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="152" height="226" viewBox="0 0 152 226">
+<svg xmlns="http://www.w3.org/2000/svg" width="171" height="226" viewBox="0 0 171 226">
   <g id="Group_26" data-name="Group 26" transform="translate(-35 -414)">
     <g id="Image_8" data-name="Image 8" transform="translate(36 417)" fill="#eaeaea" stroke="#eaeaea" stroke-width="1">
-      <rect width="150" height="222" rx="35" stroke="none"/>
-      <rect x="-0.5" y="-0.5" width="151" height="223" rx="35.5" fill="none"/>
+      <rect width="169" height="222" rx="35" stroke="none"/>
+      <rect x="-0.5" y="-0.5" width="170" height="223" rx="35.5" fill="none"/>
     </g>
-    <rect id="Image_2" data-name="Image 2" width="150" height="222" rx="35" transform="translate(35 414)" fill="#b6b4da"/>
+    <rect id="Image_2" data-name="Image 2" width="169" height="222" rx="35" transform="translate(35 414)" fill="#b6b4da"/>
   </g>
 </svg>

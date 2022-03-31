@@ -1,4 +1,4 @@
-package com.protect.safetylife.dashboard;
+package com.protect.safetylife.controller.dashboard;
 
 import android.app.ActivityManager;
 import android.app.ProgressDialog;
@@ -16,8 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.protect.safetylife.Informatii.InformatieCont;
 import com.protect.safetylife.R;
-import com.protect.safetylife.login.LogInActivity;
-import com.protect.safetylife.powerbutton.ScreenOnOffBackgroundService;
+import com.protect.safetylife.controller.powerbutton.ScreenOnOffBackgroundService;
 
 /**
     Main activity

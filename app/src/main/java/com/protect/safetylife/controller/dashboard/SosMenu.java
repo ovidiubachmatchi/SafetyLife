@@ -1,4 +1,4 @@
-package com.protect.safetylife.dashboard;
+package com.protect.safetylife.controller.dashboard;
 
 import androidx.appcompat.app.AppCompatActivity;
 

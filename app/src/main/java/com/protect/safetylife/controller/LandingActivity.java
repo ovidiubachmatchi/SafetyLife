@@ -1,8 +1,7 @@
-package com.protect.safetylife;
+package com.protect.safetylife.controller;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -11,13 +10,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.protect.safetylife.Informatii.InformatieCont;
-import com.protect.safetylife.dashboard.DashboardActivity;
-import com.protect.safetylife.login.LogInActivity;
-import com.protect.safetylife.signup.SignUp1Activity;
+import com.protect.safetylife.R;
+import com.protect.safetylife.controller.dashboard.DashboardActivity;
+import com.protect.safetylife.controller.login.LogInActivity;
+import com.protect.safetylife.controller.signup.SignUp1Activity;
 
 public class LandingActivity extends AppCompatActivity {
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

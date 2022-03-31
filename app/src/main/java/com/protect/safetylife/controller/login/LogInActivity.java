@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.protect.safetylife.Informatii.InformatieCont;
 import com.protect.safetylife.R;
-import com.protect.safetylife.dashboard.DashboardActivity;
+import com.protect.safetylife.controller.dashboard.DashboardActivity;
 import com.protect.safetylife.utils.Animation;
 import com.protect.safetylife.utils.Credentials;
 
@@ -53,7 +53,7 @@ public class LogInActivity extends AppCompatActivity {
         InformatieCont.sharedPreferences= getSharedPreferences(InformatieCont.login, Context.MODE_PRIVATE);
         if(InformatieCont.verificareLogat())
         {
-            Intent activity2=new Intent(this,DashboardActivity.class);
+            Intent activity2=new Intent(this, DashboardActivity.class);
             startActivity(activity2);
         }
 
@@ -132,7 +132,7 @@ public class LogInActivity extends AppCompatActivity {
      */
     private void logat()
     {
-        Intent activity2=new Intent(this,DashboardActivity.class);
+        Intent activity2=new Intent(this, DashboardActivity.class);
         /// activity2.putExtra(USER,email.getText().toString());
         startActivity(activity2);
     }

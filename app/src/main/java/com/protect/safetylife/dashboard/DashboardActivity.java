@@ -1,14 +1,20 @@
 package com.protect.safetylife.dashboard;
 
 import android.app.ActivityManager;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.protect.safetylife.Informatii.InformatieCont;
 import com.protect.safetylife.R;
 import com.protect.safetylife.login.LogInActivity;
 import com.protect.safetylife.powerbutton.ScreenOnOffBackgroundService;
@@ -18,6 +24,17 @@ import com.protect.safetylife.powerbutton.ScreenOnOffBackgroundService;
 */
 public class DashboardActivity extends AppCompatActivity {
 
+    private TextView mesajLogat;
+    private ProgressDialog progres;
+
+    private ImageView sosBtn;
+    private ImageView watchBtn;
+    private ImageView locationBtn;
+    private ImageView cameraBtn;
+    private ImageView stealBtn;
+    private ImageView reminderBtn;
+    private ImageView fakeCallBtn;
+    private ImageView settings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,13 +56,24 @@ public class DashboardActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         }
 
-        ImageView sosBtn = findViewById(R.id.sosBtn);
-        ImageView watchBtn = findViewById(R.id.watchBtn);
-        ImageView locationBtn = findViewById(R.id.locationBtn);
-        ImageView cameraBtn = findViewById(R.id.cameraBtn);
-        ImageView stealBtn = findViewById(R.id.stealBtn);
-        ImageView reminderBtn = findViewById(R.id.reminderBtn);
-        ImageView fakeCallBtn = findViewById(R.id.fakeCallBtn);
+        /**
+         * Initializam si verificam logarea
+         * la initializare se colecteaza datele din fisiere stocate se face privat
+         */
+        InformatieCont.sharedPreferences= getSharedPreferences(InformatieCont.login, Context.MODE_PRIVATE);
+        mesajLogat=(TextView) findViewById(R.id.mesajLogat);
+        if(InformatieCont.verificareLogat())
+        {
+            mesajLogat.setText(InformatieCont.sharedPreferences.getString(InformatieCont.username,""));
+        }
+        progres=new ProgressDialog(this);
+        sosBtn = findViewById(R.id.sosBtn);
+        watchBtn = findViewById(R.id.watchBtn);
+        locationBtn = findViewById(R.id.locationBtn);
+        cameraBtn = findViewById(R.id.cameraBtn);
+        stealBtn = findViewById(R.id.stealBtn);
+        reminderBtn = findViewById(R.id.reminderBtn);
+        fakeCallBtn = findViewById(R.id.fakeCallBtn);
 
 
         sosBtn.setOnClickListener(v -> {
@@ -55,6 +83,31 @@ public class DashboardActivity extends AppCompatActivity {
         });
 
     }
+
+    /**
+     * Momentan am legat aceasta functie de butonul de settings pana cand se
+     * va realiza butonul de logout
+     * Odata cu delogarea datele care sunt salvate in fisiere sharedPreferences sunt sterse
+     * @param view
+     */
+    public void deconect(View view)
+    {
+        settings=findViewById(R.id.settings2);
+        SharedPreferences.Editor editor=InformatieCont.sharedPreferences.edit();
+        editor.clear();
+        editor.commit();
+        finish();
+        Toast.makeText(DashboardActivity.this,"Logout Succesful",Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Opreste fortat iesirea pe butonul back
+     */
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(false);
+    }
+
     /**
      * METHOD NOT APPROVED, TO BE DISCUSSED
      * The method is showing a button on the dashboard.xml that can force close the application

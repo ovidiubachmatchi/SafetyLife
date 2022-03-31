@@ -3,6 +3,35 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/drawable/auth_button.xml" value="0.172" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/drawable/auth_image_left_bottom.xml" value="0.172" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/drawable/auth_image_right_top_shadow.xml" value="0.172" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/drawable/auth_input_box.xml" value="0.172" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/drawable/auth_text_already_have_an_account__log_in.xml" value="0.172" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/drawable/edit_text_cursor.xml" value="0.1485" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/drawable/landing_button_empty.xml" value="0.1485" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/drawable/landing_illustration.xml" value="0.1485" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/drawable/login_background.xml" value="0.169" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/drawable/login_signup_error_gray_input_box.xml" value="0.169" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/drawable/login_signup_error_gray_input_box_half.xml" value="0.1795" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/drawable/login_signup_gray_input_box.xml" value="0.1485" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/drawable/login_signup_gray_input_box_half_size.xml" value="0.169" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/drawable/login_signup_gray_input_box_one_third_size.xml" value="0.1485" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/drawable/login_signup_top_image.xml" value="0.1485" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/layout/auth_landing.xml" value="0.36666666666666664" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/layout/auth_login.xml" value="0.25" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/layout/auth_signup.xml" value="0.25" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/layout/dashboard.xml" value="0.17831813576494426" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/layout/landing.xml" value="0.20416666666666666" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/layout/login.xml" value="0.33" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/layout/menu.xml" value="0.33" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/layout/signup.xml" value="0.1693840579710145" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/layout/signup1.xml" value="0.22" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/layout/signup2.xml" value="0.20416666666666666" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/layout/signup3.xml" value="0.20416666666666666" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/layout/signup4.xml" value="0.20416666666666666" />
+        <entry key="..\:/Aplicatii Android Studio/SafetyLife/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1785" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/auth_button.xml" value="0.1785" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/auth_button_signup.xml" value="0.1785" />
@@ -11,9 +40,6 @@
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/auth_rectangle_shadow_pixelated.xml" value="0.1785" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/background.xml" value="0.1785" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/background_login.xml" value="0.1785" />
-        <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/div.xml" value="0.1055" />
-        <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/down_menu.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/half_div.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/ic_don_t_have_an_account_yet__sign_up.xml" value="0.1785" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/ic_flowchart.xml" value="0.1785" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/ic_landing_button_white_fill.xml" value="0.1785" />
@@ -36,24 +62,18 @@
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/login_signup_gray_input_box.xml" value="0.1055" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/login_signup_gray_input_box_half_size.xml" value="0.1785" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/drawable/login_signup_top_image.xml" value="0.1785" />
-        <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/layout-v26/dashboard.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/layout/activity_main.xml" value="0.14407866609662248" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/layout/auth_landing.xml" value="0.22" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/layout/auth_login.xml" value="0.22" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/layout/auth_signup.xml" value="0.22" />
-        <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/layout/board.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/layout/dashboard.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/layout/landing.xml" value="0.22" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/layout/login.xml" value="0.22" />
-        <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/layout/menu.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/layout/signup.xml" value="0.22" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/layout/signup1.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/layout/signup2.xml" value="0.22" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/layout/signup3.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/layout/signup4.xml" value="0.22" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/layout/signup_2.xml" value="0.22" />
-        <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/layout/sos_menu.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/layout/sos_system.xml" value="0.14407866609662248" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1785" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/SafetyLife/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
         <entry key="..\:/Users/ovidiu/AndroidStudioProjects/protectme/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.184" />

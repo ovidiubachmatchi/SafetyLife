@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "421042490296",
+    "project_id": "login-44d1c",
+    "storage_bucket": "login-44d1c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421042490296:android:ba68d6bc49ee71e2491d4d",
+        "android_client_info": {
+          "package_name": "com.example.login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "421042490296-785ncrujjil3eiuhuqq91se5i0i2i6t4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnQ01SWVCBhHB_1UNsJCcqR_-szisKgOE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "421042490296-785ncrujjil3eiuhuqq91se5i0i2i6t4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421042490296:android:257e10fd033c3ff9491d4d",
+        "android_client_info": {
+          "package_name": "com.protect.safetylife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "421042490296-785ncrujjil3eiuhuqq91se5i0i2i6t4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnQ01SWVCBhHB_1UNsJCcqR_-szisKgOE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "421042490296-785ncrujjil3eiuhuqq91se5i0i2i6t4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

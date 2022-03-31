@@ -56,6 +56,7 @@ public class LogInActivity extends AppCompatActivity {
             Intent activity2=new Intent(this,DashboardActivity.class);
             startActivity(activity2);
         }
+
         addButtonFunctionality();
         Animation.fadeIn(findViewById(R.id.back), 600);
 

@@ -63,8 +63,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                app:layout_constraintEnd_toEndOf="@+id/locationBtn"
-                app:layout_constraintStart_toStartOf="@+id/watchBtn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/div" />
 
@@ -72,7 +72,7 @@
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:adjustViewBounds="true"
                 android:text="Activate SOS system to get help fast"
                 android:textColor="#272727"
@@ -103,8 +103,9 @@
                 android:id="@+id/watchBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="45dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="@+id/sosBtn"
                 app:layout_constraintTop_toBottomOf="@+id/sosBtn"
                 app:srcCompat="@drawable/half_div" />
 
@@ -112,8 +113,9 @@
                 android:id="@+id/locationBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="45dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/sosBtn"
                 app:layout_constraintTop_toBottomOf="@+id/sosBtn"
                 app:srcCompat="@drawable/half_div" />
 
@@ -153,7 +155,7 @@
                 android:id="@+id/cameraBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="@+id/watchBtn"
                 app:layout_constraintTop_toBottomOf="@+id/watchBtn"
                 app:srcCompat="@drawable/half_div" />
@@ -162,7 +164,7 @@
                 android:id="@+id/stealBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="@+id/cameraBtn"
                 app:layout_constraintTop_toBottomOf="@+id/cameraBtn"
                 app:srcCompat="@drawable/half_div" />
@@ -171,7 +173,7 @@
                 android:id="@+id/fakeCallBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="@+id/locationBtn"
                 app:layout_constraintTop_toBottomOf="@+id/locationBtn"
                 app:srcCompat="@drawable/half_div" />
@@ -229,7 +231,7 @@
                 android:id="@+id/reminderBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="@+id/fakeCallBtn"
                 app:layout_constraintTop_toBottomOf="@+id/fakeCallBtn"
                 app:srcCompat="@drawable/half_div" />

@@ -1,4 +1,4 @@
-package com.protect.safetylife.powerbutton;
+package com.protect.safetylife.controller.powerbutton;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

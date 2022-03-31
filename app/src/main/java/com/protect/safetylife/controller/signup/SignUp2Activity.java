@@ -1,4 +1,4 @@
-package com.protect.safetylife.signup;
+package com.protect.safetylife.controller.signup;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;

@@ -1,4 +1,4 @@
-package com.protect.safetylife.powerbutton;
+package com.protect.safetylife.controller.powerbutton;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -17,7 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
-import com.protect.safetylife.dashboard.DashboardActivity;
+import com.protect.safetylife.controller.dashboard.DashboardActivity;
 import com.protect.safetylife.R;
 
 

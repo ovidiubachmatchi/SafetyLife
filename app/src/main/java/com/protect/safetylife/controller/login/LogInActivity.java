@@ -1,4 +1,4 @@
-package com.protect.safetylife.login;
+package com.protect.safetylife.controller.login;
 
 import android.os.Bundle;
 import android.view.animation.AnimationUtils;

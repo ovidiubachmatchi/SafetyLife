@@ -37,6 +37,7 @@
         android:layout_marginBottom="32dp"
         android:adjustViewBounds="true"
         android:contentDescription="settings"
+        android:onClick="deconect"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/icon_settings" />
@@ -330,4 +331,19 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/mesajLogat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFFAFA"
+        android:foregroundTint="#FFFFFF"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintEnd_toStartOf="@+id/profile2"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toEndOf="@+id/settings2"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.542" />
 </androidx.constraintlayout.widget.ConstraintLayout>

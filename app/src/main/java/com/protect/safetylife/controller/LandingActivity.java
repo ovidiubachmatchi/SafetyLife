@@ -1,4 +1,4 @@
-package com.protect.safetylife.controller;
+package com.protect.safetylife;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,10 +8,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.protect.safetylife.R;
-import com.protect.safetylife.controller.dashboard.DashboardActivity;
-import com.protect.safetylife.controller.login.LogInActivity;
-import com.protect.safetylife.controller.signup.SignUp1Activity;
+import com.protect.safetylife.dashboard.DashboardActivity;
+import com.protect.safetylife.login.LogInActivity;
+import com.protect.safetylife.signup.SignUp1Activity;
 
 public class LandingActivity extends AppCompatActivity {
 

@@ -10,17 +10,15 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-<<<<<<<<< Temporary merge branch 1:app/src/main/java/com/protect/safetylife/controller/LandingActivity.java
 import com.protect.safetylife.R;
 import com.protect.safetylife.controller.dashboard.DashboardActivity;
 import com.protect.safetylife.controller.login.LogInActivity;
 import com.protect.safetylife.controller.signup.SignUp1Activity;
-=========
+
 import com.protect.safetylife.Informatii.InformatieCont;
-import com.protect.safetylife.dashboard.DashboardActivity;
-import com.protect.safetylife.login.LogInActivity;
-import com.protect.safetylife.signup.SignUp1Activity;
->>>>>>>>> Temporary merge branch 2:app/src/main/java/com/protect/safetylife/LandingActivity.java
+import com.protect.safetylife.controller.dashboard.DashboardActivity;
+import com.protect.safetylife.controller.login.LogInActivity;
+import com.protect.safetylife.controller.signup.SignUp1Activity;
 
 public class LandingActivity extends AppCompatActivity {
 

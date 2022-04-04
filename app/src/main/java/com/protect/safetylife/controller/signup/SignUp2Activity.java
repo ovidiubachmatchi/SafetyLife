@@ -2,6 +2,7 @@ package com.protect.safetylife.controller.signup;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.protect.safetylife.Informatii.InformatieCont;
 import com.protect.safetylife.R;
 import com.protect.safetylife.utils.Animation;
 import com.protect.safetylife.utils.Credentials;
@@ -24,7 +26,10 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class SignUp2Activity extends AppCompatActivity {
-
+    private Spinner sex;
+    private EditText firstName;
+    private EditText lastName;
+    private EditText date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,11 +80,11 @@ public class SignUp2Activity extends AppCompatActivity {
             myCalendar.set(Calendar.DAY_OF_MONTH,day);
             String myFormat="MM/dd/yy";
             SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.US);
-            EditText datePicker = findViewById(R.id.dateOfBirth);
+            EditText datePicker = findViewById(R.id.dateInput);
             datePicker.setText(dateFormat.format(myCalendar.getTime()));
         };
 
-        EditText datePicker = findViewById(R.id.dateOfBirth);
+        EditText datePicker = findViewById(R.id.dateInput);
 
         datePicker.setOnClickListener(v -> new DatePickerDialog(this,date,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show());
     }
@@ -94,10 +99,20 @@ public class SignUp2Activity extends AppCompatActivity {
     private void addButtonFunctionality() {
         ImageView backBtn = findViewById(R.id.back);
         ImageView signupBtn = findViewById(R.id.signupBtn);
+        date = findViewById(R.id.dateInput);
+        firstName=findViewById(R.id.firstname);
+        lastName=findViewById(R.id.lastName);
+        sex=findViewById(R.id.sex);
 
         signupBtn.setOnClickListener(v -> {
             signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
             if (validCredentials()) {
+                SharedPreferences.Editor editor = InformatieCont.sharedPreferences.edit();
+                editor.putString(InformatieCont.firstname, firstName.getText().toString());
+                editor.putString(InformatieCont.lastname, lastName.getText().toString());
+                editor.putString(InformatieCont.sex, sex.getSelectedItem().toString());
+                editor.putString(InformatieCont.date,date.getText().toString());
+                editor.commit();
                 Intent intent = new Intent(this, SignUp3Activity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom);
@@ -114,7 +129,7 @@ public class SignUp2Activity extends AppCompatActivity {
     private boolean validCredentials() {
         EditText firstName = findViewById(R.id.firstname);
         EditText lastName = findViewById(R.id.lastName);
-        EditText dateOfBirth = findViewById(R.id.dateOfBirth);
+        EditText dateOfBirth = findViewById(R.id.dateInput);
         Spinner sex = findViewById(R.id.sex);
 
         boolean valid;

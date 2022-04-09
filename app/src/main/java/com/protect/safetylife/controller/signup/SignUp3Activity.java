@@ -1,6 +1,7 @@
 package com.protect.safetylife.controller.signup;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
@@ -10,11 +11,17 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.protect.safetylife.Informatii.InformatieCont;
 import com.protect.safetylife.R;
+import com.protect.safetylife.controller.dashboard.DashboardActivity;
 import com.protect.safetylife.utils.Animation;
 import com.protect.safetylife.utils.Credentials;
 
 public class SignUp3Activity extends AppCompatActivity {
+
+    private AutoCompleteTextView country;
+    private EditText street;
+    private EditText zipcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +41,19 @@ public class SignUp3Activity extends AppCompatActivity {
     private void addButtonFunctionality() {
         ImageView backBtn = findViewById(R.id.back);
         ImageView signupBtn = findViewById(R.id.signupBtn);
+        street=findViewById(R.id.street);
+        country=findViewById(R.id.country);
+        zipcode=findViewById(R.id.zipcode);
 
         signupBtn.setOnClickListener(v -> {
             signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
+
             if (validCredentials()) {
+                SharedPreferences.Editor editor = InformatieCont.sharedPreferences.edit();
+                editor.putString(InformatieCont.street, street.getText().toString());
+                editor.putString(InformatieCont.country, country.getText().toString());
+                editor.putString(InformatieCont.zipcode, zipcode.getText().toString());
+                editor.commit();
                 Intent intent = new Intent(this, SignUp4Activity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom);

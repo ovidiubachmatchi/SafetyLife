@@ -8,7 +8,18 @@ import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Credentials {
+
+    public static boolean validEmail(String email)
+    {
+        String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
 
     /**
      *  Check if multiple EditText are empty. The empty ones are going to change border in red and
@@ -22,7 +33,7 @@ public class Credentials {
         boolean valid = false;
 
         for(EditText view : editTexts) {
-            if(TextUtils.isEmpty(view.getText().toString())) {
+            if(view.getText().toString().trim().equalsIgnoreCase("")) {
                 errorInputBox(view, context);
                 valid = true;
             }

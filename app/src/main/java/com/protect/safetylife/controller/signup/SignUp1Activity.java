@@ -1,23 +1,25 @@
 package com.protect.safetylife.controller.signup;
 
-import android.app.ProgressDialog;
+import static android.content.ContentValues.TAG;
+
+import static com.protect.safetylife.utils.Animation.errorInputBox;
+import static com.protect.safetylife.utils.Animation.validInputBox;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.SignInMethodQueryResult;
 import com.protect.safetylife.Informatii.InformatieCont;
-import com.protect.safetylife.controller.dashboard.DashboardActivity;
-import com.protect.safetylife.controller.login.LogInActivity;
 import com.protect.safetylife.utils.Credentials;
 
 import androidx.annotation.NonNull;
@@ -52,47 +54,17 @@ public class SignUp1Activity extends AppCompatActivity {
     }
 
     private void addButtonFunctionality() {
-        ImageView backBtn = findViewById(R.id.back);
-        ImageView signupBtn = findViewById(R.id.signupBtn);
-         emailAddress = findViewById(R.id.email);
-         password = findViewById(R.id.password);
-         repeatPassword = findViewById(R.id.repeatPassword);
         auth=FirebaseAuth.getInstance();
         user=auth.getCurrentUser();
+        ImageView backBtn = findViewById(R.id.back);
+        ImageView signupBtn = findViewById(R.id.signupBtn);
+
+        emailAddress = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+        repeatPassword = findViewById(R.id.repeatPassword);
+
         signupBtn.setOnClickListener(v -> {
-            signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
-            signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
-            if (validCredentials()) {
-                if(validEmail(emailAddress.getText().toString())) {
-                    if(password.getText().toString().length()>5) {
-                        if(password.getText().toString().equals(repeatPassword.getText().toString())) {
-                            //registartion();
-                            checkEmailExist();
-                            SharedPreferences.Editor editor = InformatieCont.sharedPreferences.edit();
-                            editor.putString(InformatieCont.username, emailAddress.getText().toString());
-                            editor.putString(InformatieCont.password, password.getText().toString());
-                            editor.putString(InformatieCont.userId, auth.getCurrentUser().getUid());
-                            editor.commit();
-                            Intent intent = new Intent(this, SignUp2Activity.class);
-                            startActivity(intent);
-                            overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom);
-                        }
-                        else
-                        {
-                            Toast.makeText(SignUp1Activity.this, "Password and repeat password do not match!", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    else
-                    {
-                        Toast.makeText(SignUp1Activity.this, "Password too short!", Toast.LENGTH_SHORT).show();
-                    }
-                }
-                else
-                {
-                    emailAddress.setError("Enter corect email!");
-                    Toast.makeText(SignUp1Activity.this, "Email incorect!", Toast.LENGTH_SHORT).show();
-                }
-            }
+            signup(signupBtn);
         });
 
         backBtn.setOnClickListener(v -> {
@@ -101,36 +73,80 @@ public class SignUp1Activity extends AppCompatActivity {
         });
     }
 
-    private boolean validCredentials() {
+    private void signup(ImageView signupBtn) {
+        signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
+        signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
 
-        boolean valid = Credentials.isEmpty(this, emailAddress, password, repeatPassword);
-        return !valid;
+        String emailAddressString = emailAddress.getText().toString();
+        String passwordString = password.getText().toString();
+        String repeatPasswordString = repeatPassword.getText().toString();
+
+        boolean valid = true;
+
+        if(Credentials.isEmpty(this, emailAddress, password, repeatPassword)) {
+            return;
+        }
+
+        if(!Credentials.validEmail(emailAddressString)) {
+            valid = false;
+            emailAddress.setError("Incorrect email format");
+            errorInputBox(emailAddress, this);
+        }
+        else validInputBox(emailAddress, this);
+
+        if(passwordString.length() <= 5) {
+            valid = false;
+            password.setError("Password too short");
+            errorInputBox(password, this);
+        }
+        else validInputBox(password, this);
+
+        if(!passwordString.equals(repeatPasswordString)) {
+            valid = false;
+            repeatPassword.setError("Passwords do not match");
+            errorInputBox(repeatPassword, this);
+        }
+        else validInputBox(repeatPassword, this);
+
+        if(!valid || emailAddress.getError() != null)
+            return;
+
+        checkEmailExistsOrNot(emailAddressString);
+
     }
-    private boolean validEmail(String email)
-    {
-        String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
+
+    private void continueSignup() {
+        SharedPreferences.Editor editor = InformatieCont.sharedPreferences.edit();
+        editor.putString(InformatieCont.username, emailAddress.getText().toString());
+        editor.putString(InformatieCont.password, password.getText().toString());
+        editor.commit();
+        Intent intent = new Intent(this, SignUp2Activity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom);
     }
 
-    private void checkEmailExist()
-    {
-        auth.fetchSignInMethodsForEmail(emailAddress.getText().toString())
-                .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+    private void checkEmailExistsOrNot(String emailAddressString){
 
-                        boolean isNewUser = task.getResult().getSignInMethods().isEmpty();
+        auth.fetchSignInMethodsForEmail(emailAddressString).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+            @Override
+            public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                Log.d(TAG,""+task.getResult().getSignInMethods().size());
+                if (task.getResult().getSignInMethods().size() == 0){
+                    emailAddress.setError(null);
+                    validInputBox(emailAddress, getApplicationContext());
+                    continueSignup();
 
-                        if (isNewUser) {
-                            Toast.makeText(SignUp1Activity.this, "Email valid!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(SignUp1Activity.this, "Email used!", Toast.LENGTH_SHORT).show();
-                        }
+                } else {
+                    emailAddress.setError("Email is already in use");
+                    errorInputBox(emailAddress, getApplicationContext());
+                }
 
-                    }
-                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
-
 }

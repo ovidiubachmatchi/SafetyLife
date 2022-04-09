@@ -135,21 +135,19 @@ public class SignUp4Activity extends AppCompatActivity {
     private void registartion()
     {
 
-        auth.createUserWithEmailAndPassword(InformatieCont.sharedPreferences.getString(InformatieCont.username,""),InformatieCont.sharedPreferences.getString(InformatieCont.password,"")).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful())
-                {
-                    adaugareDateBaza();
-                    Toast.makeText(SignUp4Activity.this, "Sign up successful!", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    progressDialog.dismiss();
-                    Toast.makeText(SignUp4Activity.this, "Error try again later!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        auth.createUserWithEmailAndPassword(InformatieCont.sharedPreferences.getString(InformatieCont.username,""), InformatieCont.sharedPreferences.getString(InformatieCont.password,""))
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful())
+                    {
+                        adaugareDateBaza();
+                        Toast.makeText(SignUp4Activity.this, "Sign up successful!", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        progressDialog.dismiss();
+                        Toast.makeText(SignUp4Activity.this, "Error try again later!", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void adaugareDateBaza()
@@ -167,17 +165,13 @@ public class SignUp4Activity extends AppCompatActivity {
             info.put("Disease","Without diseases");
         else
             info.put("Disease",unireBoli());
+
         db.collection("users").document(user.getUid()).set(info).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(SignUp4Activity.this, "Data save successful!", Toast.LENGTH_SHORT).show();
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(SignUp4Activity.this, "Error try again later!", Toast.LENGTH_SHORT).show();
-            }
-        });
+        }).addOnFailureListener(e -> Toast.makeText(SignUp4Activity.this, "Error try again later!", Toast.LENGTH_SHORT).show());
 
     }
 

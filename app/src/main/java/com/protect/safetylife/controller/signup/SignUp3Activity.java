@@ -49,11 +49,15 @@ public class SignUp3Activity extends AppCompatActivity {
             signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
 
             if (validCredentials()) {
-                SharedPreferences.Editor editor = InformatieCont.sharedPreferences.edit();
-                editor.putString(InformatieCont.street, street.getText().toString());
-                editor.putString(InformatieCont.country, country.getText().toString());
-                editor.putString(InformatieCont.zipcode, zipcode.getText().toString());
-                editor.commit();
+                InformatieCont.street2=street.getText().toString();
+                InformatieCont.country2=country.getText().toString();
+                InformatieCont.zipcode2=zipcode.getText().toString();
+
+//                SharedPreferences.Editor editor = InformatieCont.sharedPreferences.edit();
+//                editor.putString(InformatieCont.street, street.getText().toString());
+//                editor.putString(InformatieCont.country, country.getText().toString());
+//                editor.putString(InformatieCont.zipcode, zipcode.getText().toString());
+//                editor.commit();
                 Intent intent = new Intent(this, SignUp4Activity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom);

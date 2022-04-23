@@ -107,12 +107,17 @@ public class SignUp2Activity extends AppCompatActivity {
         signupBtn.setOnClickListener(v -> {
             signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
             if (validCredentials()) {
-                SharedPreferences.Editor editor = InformatieCont.sharedPreferences.edit();
-                editor.putString(InformatieCont.firstname, firstName.getText().toString());
-                editor.putString(InformatieCont.lastname, lastName.getText().toString());
-                editor.putString(InformatieCont.sex, sex.getSelectedItem().toString());
-                editor.putString(InformatieCont.date,date.getText().toString());
-                editor.commit();
+                InformatieCont.firstname2 = firstName.getText().toString();
+                InformatieCont.lastname2 = lastName.getText().toString();
+                InformatieCont.sex2 = sex.getSelectedItem().toString();
+                InformatieCont.date2 = date.getText().toString();
+
+//                SharedPreferences.Editor editor = InformatieCont.sharedPreferences.edit();
+//                editor.putString(InformatieCont.firstname, firstName.getText().toString());
+//                editor.putString(InformatieCont.lastname, lastName.getText().toString());
+//                editor.putString(InformatieCont.sex, sex.getSelectedItem().toString());
+//                editor.putString(InformatieCont.date,date.getText().toString());
+//                editor.commit();
                 Intent intent = new Intent(this, SignUp3Activity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom);

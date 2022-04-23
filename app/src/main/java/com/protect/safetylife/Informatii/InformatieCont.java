@@ -18,9 +18,21 @@ public class InformatieCont extends AppCompatActivity {
     public final static String street="street";
     public final static String country="country";
     public final static String zipcode="zipcode";
+
+    public  static String username2;
+    public  static String password2;
+    public  static String userId2;
+    public  static String firstname2;
+    public  static String lastname2;
+    public  static String date2;
+    public  static String sex2;
+    public  static String street2;
+    public  static String country2;
+    public  static String zipcode2;
+
     public static boolean verificareLogat()
     {
-        if(sharedPreferences.contains(username))
+        if(sharedPreferences.contains(username) || !username2.isEmpty())
         {
             return true;
         }

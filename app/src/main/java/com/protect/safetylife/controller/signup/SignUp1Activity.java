@@ -107,10 +107,12 @@ public class SignUp1Activity extends AppCompatActivity {
     }
 
     private void continueSignup() {
-        SharedPreferences.Editor editor = InformatieCont.sharedPreferences.edit();
-        editor.putString(InformatieCont.username, emailAddress.getText().toString());
-        editor.putString(InformatieCont.password, password.getText().toString());
-        editor.apply();
+        InformatieCont.username2 = emailAddress.getText().toString();
+        InformatieCont.password2 = password.getText().toString();
+//        SharedPreferences.Editor editor = InformatieCont.sharedPreferences.edit();
+//        editor.putString(InformatieCont.username, emailAddress.getText().toString());
+//        editor.putString(InformatieCont.password, password.getText().toString());
+//        editor.apply();
         Intent intent = new Intent(this, SignUp2Activity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom);

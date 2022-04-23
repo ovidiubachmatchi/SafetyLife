@@ -72,7 +72,12 @@ public class DashboardActivity extends AppCompatActivity {
         mesajLogat = findViewById(R.id.mesajLogat);
         if(InformatieCont.verificareLogat())
         {
-            mesajLogat.setText(InformatieCont.sharedPreferences.getString(InformatieCont.username,""));
+            String mesaj = "";
+            if(InformatieCont.username2 == null)
+                mesaj = InformatieCont.sharedPreferences.getString(InformatieCont.username,"");
+            else
+                mesaj = InformatieCont.username2;
+            mesajLogat.setText(mesaj);
         }
         progres=new ProgressDialog(this);
         sosBtn = findViewById(R.id.sosBtn);

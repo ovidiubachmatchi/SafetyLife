@@ -3,6 +3,7 @@ package com.protect.safetylife.controller.signup;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
@@ -10,8 +11,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -116,12 +120,28 @@ public class SignUp4Activity extends AppCompatActivity {
 
     private void registration()
     {
+        SharedPreferences.Editor editor = InformatieCont.sharedPreferences.edit();
+        editor.putString(InformatieCont.username, InformatieCont.username2);
 
-        auth.createUserWithEmailAndPassword(InformatieCont.sharedPreferences.getString(InformatieCont.username,""), InformatieCont.sharedPreferences.getString(InformatieCont.password,""))
+        auth.createUserWithEmailAndPassword(InformatieCont.username2, InformatieCont.password2)
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful())
                     {
+
+                        editor.putString(InformatieCont.street, InformatieCont.street2);
+                        editor.putString(InformatieCont.country, InformatieCont.country2);
+                        editor.putString(InformatieCont.password, InformatieCont.password2);
+                        editor.putString(InformatieCont.firstname, InformatieCont.firstname2);
+                        editor.putString(InformatieCont.lastname, InformatieCont.lastname2);
+                        editor.putString(InformatieCont.date, InformatieCont.date2);
+                        editor.putString(InformatieCont.sex, InformatieCont.sex2);
+                        editor.putString(InformatieCont.zipcode, InformatieCont.zipcode2);
+                        editor.putString(InformatieCont.userId, user.getUid());
+
+                        editor.commit();
+
                         adaugareDateBaza();
+
                         Toast.makeText(SignUp4Activity.this, "Sign up successful!", Toast.LENGTH_SHORT).show();
                     }
                     else
@@ -148,7 +168,18 @@ public class SignUp4Activity extends AppCompatActivity {
         else
             info.put("Disease",unireBoli());
 
-        db.collection("users").document(user.getUid()).set(info).addOnSuccessListener(unused -> Toast.makeText(SignUp4Activity.this, "Data save successful!", Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(SignUp4Activity.this, "Error try again later!", Toast.LENGTH_SHORT).show());
+        db.collection("users").document(user.getUid()).set(info).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+
+                Toast.makeText(SignUp4Activity.this, "Data save successful!", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(SignUp4Activity.this, "Error try again later!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

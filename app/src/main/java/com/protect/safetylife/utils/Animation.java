@@ -32,7 +32,7 @@ public class Animation {
      * @param context
      */
     public static void errorInputBox(View view, Context context) {
-        // TODO This if doesn't work in api 31
+
         if(view.getBackground().getConstantState().equals(Objects.requireNonNull(AppCompatResources.getDrawable(context, R.drawable.login_signup_gray_input_box)).getConstantState()))
             if (view.getWidth() < 400)
                 view.setBackground(AppCompatResources.getDrawable(context, R.drawable.login_signup_error_gray_input_box_half));

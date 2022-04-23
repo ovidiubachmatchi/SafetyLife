@@ -5,11 +5,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,22 +33,16 @@ public class ListViewAdapter extends ArrayAdapter<String> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         if(convertView==null)
         {
-            LayoutInflater layout=(LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater layout = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView=layout.inflate(R.layout.lista_boli,null);
             TextView numar=convertView.findViewById(R.id.numar);
             numar.setText(position+1+".");
             TextView nume=convertView.findViewById(R.id.nume);
             nume.setText(list.get(position));
             ImageView delete=convertView.findViewById(R.id.sterge);
-            delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    SignUp4Activity.stergreBoli(position);
-                }
-            });
+            delete.setOnClickListener(view -> SignUp4Activity.stergreBoli(position));
         }
-
         return convertView;
-
     }
+
 }

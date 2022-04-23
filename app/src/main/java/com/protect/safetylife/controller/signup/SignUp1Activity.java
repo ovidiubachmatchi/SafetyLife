@@ -13,30 +13,24 @@ import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.SignInMethodQueryResult;
 import com.protect.safetylife.Informatii.InformatieCont;
 import com.protect.safetylife.utils.Credentials;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.protect.safetylife.R;
 import com.protect.safetylife.utils.Animation;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Objects;
 
 public class SignUp1Activity extends AppCompatActivity {
     private EditText emailAddress;
     private  EditText password;
     private EditText repeatPassword;
     private FirebaseAuth auth;
-    private FirebaseUser user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +49,6 @@ public class SignUp1Activity extends AppCompatActivity {
 
     private void addButtonFunctionality() {
         auth=FirebaseAuth.getInstance();
-        user=auth.getCurrentUser();
         ImageView backBtn = findViewById(R.id.back);
         ImageView signupBtn = findViewById(R.id.signupBtn);
 
@@ -63,9 +56,7 @@ public class SignUp1Activity extends AppCompatActivity {
         password = findViewById(R.id.password);
         repeatPassword = findViewById(R.id.repeatPassword);
 
-        signupBtn.setOnClickListener(v -> {
-            signup(signupBtn);
-        });
+        signupBtn.setOnClickListener(v -> signup(signupBtn));
 
         backBtn.setOnClickListener(v -> {
             backBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
@@ -119,7 +110,7 @@ public class SignUp1Activity extends AppCompatActivity {
         SharedPreferences.Editor editor = InformatieCont.sharedPreferences.edit();
         editor.putString(InformatieCont.username, emailAddress.getText().toString());
         editor.putString(InformatieCont.password, password.getText().toString());
-        editor.commit();
+        editor.apply();
         Intent intent = new Intent(this, SignUp2Activity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom);
@@ -127,26 +118,18 @@ public class SignUp1Activity extends AppCompatActivity {
 
     private void checkEmailExistsOrNot(String emailAddressString){
 
-        auth.fetchSignInMethodsForEmail(emailAddressString).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
-            @Override
-            public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
-                Log.d(TAG,""+task.getResult().getSignInMethods().size());
-                if (task.getResult().getSignInMethods().size() == 0){
-                    emailAddress.setError(null);
-                    validInputBox(emailAddress, getApplicationContext());
-                    continueSignup();
+        auth.fetchSignInMethodsForEmail(emailAddressString).addOnCompleteListener(task -> {
+            Log.d(TAG,""+ Objects.requireNonNull(task.getResult().getSignInMethods()).size());
+            if (task.getResult().getSignInMethods().size() == 0){
+                emailAddress.setError(null);
+                validInputBox(emailAddress, getApplicationContext());
+                continueSignup();
 
-                } else {
-                    emailAddress.setError("Email is already in use");
-                    errorInputBox(emailAddress, getApplicationContext());
-                }
+            } else {
+                emailAddress.setError("Email is already in use");
+                errorInputBox(emailAddress, getApplicationContext());
+            }
 
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                e.printStackTrace();
-            }
-        });
+        }).addOnFailureListener(Throwable::printStackTrace);
     }
 }

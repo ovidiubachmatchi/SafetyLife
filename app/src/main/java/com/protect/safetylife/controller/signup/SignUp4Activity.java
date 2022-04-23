@@ -1,47 +1,32 @@
 package com.protect.safetylife.controller.signup;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.icu.text.IDNA;
 import android.os.Bundle;
-import android.view.View;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.protect.safetylife.Informatii.InformatieCont;
 import com.protect.safetylife.R;
 import com.protect.safetylife.controller.LandingActivity;
-import com.protect.safetylife.controller.dashboard.DashboardActivity;
-import com.protect.safetylife.controller.login.LogInActivity;
 import com.protect.safetylife.utils.Animation;
 import com.protect.safetylife.utils.ListViewAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class SignUp4Activity extends AppCompatActivity {
+    @SuppressLint("StaticFieldLeak")
     public static ListView listView;
     public static ArrayList<String> boli;
     public static ListViewAdapter adapter;
@@ -77,7 +62,7 @@ public class SignUp4Activity extends AppCompatActivity {
         db=FirebaseFirestore.getInstance();
         signupBtn.setOnClickListener(v -> {
             signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
-            registartion();
+            registration();
             Intent intent = new Intent(this, LandingActivity.class);
             startActivity(intent);
            // registartion();
@@ -101,21 +86,18 @@ public class SignUp4Activity extends AppCompatActivity {
         listView=findViewById(R.id.listaBoli);
         boli=new ArrayList<>();
         adapter=new ListViewAdapter(getApplicationContext(),boli);
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String text=dateInput.getText().toString();
-                if(text.length() == 0)
-                {
-                    Toast.makeText(SignUp4Activity.this, "Insert a disease!", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    boli.add(text);
-                    dateInput.setText("");
-                    Toast.makeText(SignUp4Activity.this, "Added: "+text, Toast.LENGTH_SHORT).show();
-                    listView.setAdapter(adapter);
-                }
+        addButton.setOnClickListener(view -> {
+            String text=dateInput.getText().toString();
+            if(text.length() == 0)
+            {
+                Toast.makeText(SignUp4Activity.this, "Insert a disease!", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                boli.add(text);
+                dateInput.setText("");
+                Toast.makeText(SignUp4Activity.this, "Added: "+text, Toast.LENGTH_SHORT).show();
+                listView.setAdapter(adapter);
             }
         });
     }
@@ -132,7 +114,7 @@ public class SignUp4Activity extends AppCompatActivity {
         return aux;
     }
 
-    private void registartion()
+    private void registration()
     {
 
         auth.createUserWithEmailAndPassword(InformatieCont.sharedPreferences.getString(InformatieCont.username,""), InformatieCont.sharedPreferences.getString(InformatieCont.password,""))
@@ -166,12 +148,7 @@ public class SignUp4Activity extends AppCompatActivity {
         else
             info.put("Disease",unireBoli());
 
-        db.collection("users").document(user.getUid()).set(info).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Toast.makeText(SignUp4Activity.this, "Data save successful!", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(e -> Toast.makeText(SignUp4Activity.this, "Error try again later!", Toast.LENGTH_SHORT).show());
+        db.collection("users").document(user.getUid()).set(info).addOnSuccessListener(unused -> Toast.makeText(SignUp4Activity.this, "Data save successful!", Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(SignUp4Activity.this, "Error try again later!", Toast.LENGTH_SHORT).show());
 
     }
 

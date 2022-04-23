@@ -1,18 +1,21 @@
 package com.protect.safetylife.controller.dashboard;
 
+import android.Manifest;
 import android.app.ActivityManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.protect.safetylife.Informatii.InformatieCont;
 import com.protect.safetylife.R;
@@ -25,6 +28,7 @@ public class DashboardActivity extends AppCompatActivity {
 
     private TextView mesajLogat;
     private ProgressDialog progres;
+    private static final int PERMISSION_REQUEST_CODE = 1;
 
     private ImageView sosBtn;
     private ImageView watchBtn;
@@ -34,6 +38,7 @@ public class DashboardActivity extends AppCompatActivity {
     private ImageView reminderBtn;
     private ImageView fakeCallBtn;
     private ImageView settings;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +46,14 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.menu);
         // starting background service
         Intent backgroundService = new Intent(this, ScreenOnOffBackgroundService.class);
-        // making sure the service is not running in multiple instances
-        if (!isMyServiceRunning(ScreenOnOffBackgroundService.class)) {
-            startService(backgroundService);
+
+
+        if(checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_DENIED) {
+            requestPermissions();
         }
+        if (!isMyServiceRunning(ScreenOnOffBackgroundService.class))
+            startService(backgroundService);
+
         // if the activity was opened from the notification background service
         // we are going to show the force close button
         Intent intent = getIntent();
@@ -60,7 +69,7 @@ public class DashboardActivity extends AppCompatActivity {
          * la initializare se colecteaza datele din fisiere stocate se face privat
          */
         InformatieCont.sharedPreferences= getSharedPreferences(InformatieCont.login, Context.MODE_PRIVATE);
-        mesajLogat=(TextView) findViewById(R.id.mesajLogat);
+        mesajLogat = findViewById(R.id.mesajLogat);
         if(InformatieCont.verificareLogat())
         {
             mesajLogat.setText(InformatieCont.sharedPreferences.getString(InformatieCont.username,""));
@@ -83,6 +92,18 @@ public class DashboardActivity extends AppCompatActivity {
 
     }
 
+    private void requestPermissions() {
+        if (checkSelfPermission(Manifest.permission.SEND_SMS)
+                == PackageManager.PERMISSION_DENIED) {
+
+            Log.d("permission", "permission denied to SEND_SMS - requesting it");
+            String[] permissions = {Manifest.permission.SEND_SMS};
+
+            requestPermissions(permissions, PERMISSION_REQUEST_CODE);
+
+        }
+    }
+
     /**
      * Momentan am legat aceasta functie de butonul de settings pana cand se
      * va realiza butonul de logout
@@ -95,8 +116,8 @@ public class DashboardActivity extends AppCompatActivity {
         SharedPreferences.Editor editor=InformatieCont.sharedPreferences.edit();
         editor.clear();
         editor.commit();
+        stopService(new Intent(this, ScreenOnOffBackgroundService.class));
         finish();
-        Toast.makeText(DashboardActivity.this,"Logout Succesful",Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -153,8 +174,5 @@ public class DashboardActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // activity destroyed
-        // TODO
-        // If user is not logged, destroy ScreenOnOffServiee
     }
 }

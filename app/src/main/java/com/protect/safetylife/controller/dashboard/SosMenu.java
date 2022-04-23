@@ -17,11 +17,14 @@ public class SosMenu extends AppCompatActivity {
         Animation.fadeOut(findViewById(R.id.settings_sos), 600);
         Animation.fadeOut(findViewById(R.id.profile_sos), 600);
         addButtonsFunctionality();
+        getWindow().setAllowEnterTransitionOverlap(false);
+        getWindow().setAllowReturnTransitionOverlap(false);
     }
 
     private void addButtonsFunctionality() {
         findViewById(R.id.arrow_up).setOnClickListener(v -> finish());
     }
+
 
     @Override
     public void finish() {

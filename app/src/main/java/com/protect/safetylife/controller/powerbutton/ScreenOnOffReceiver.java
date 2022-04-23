@@ -6,6 +6,11 @@ import android.content.Intent;
 import android.os.CountDownTimer;
 import android.widget.Toast;
 
+import com.protect.safetylife.utils.SMSService;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class ScreenOnOffReceiver extends BroadcastReceiver {
     private final Context context;
     private int counter = 0;
@@ -23,15 +28,22 @@ public class ScreenOnOffReceiver extends BroadcastReceiver {
         }
     };
 
-    public void count() {
+    private void count() {
         counter++;
         if(counter == 5) {
-            Toast.makeText(context, "Power Button pressed 5 times", Toast.LENGTH_LONG).show();
+            serviceStart();
             return;
         }
         timer.cancel();
         timer.start();
     }
+
+    private void serviceStart() {
+        Toast.makeText(context, "Power Button pressed 5 times", Toast.LENGTH_LONG).show();
+        // TODO HARDCODED PHONE NUMBERS
+        SMSService.sendSMS(Arrays.asList("0755312170"));
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();

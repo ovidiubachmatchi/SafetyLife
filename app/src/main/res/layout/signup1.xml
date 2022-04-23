@@ -137,7 +137,7 @@
         android:id="@+id/repeatPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="112dp"
         android:autofillHints=""
         android:background="@drawable/login_signup_gray_input_box"
         android:ems="10"
@@ -146,7 +146,7 @@
         android:textCursorDrawable="@drawable/edit_text_cursor"
         app:layout_constraintBottom_toTopOf="@+id/signupBtn"
         app:layout_constraintEnd_toEndOf="@+id/password"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/password"
         tools:ignore="SpeakableTextPresentCheck" />
 

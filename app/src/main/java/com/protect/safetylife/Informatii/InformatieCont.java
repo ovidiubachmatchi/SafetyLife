@@ -32,7 +32,7 @@ public class InformatieCont extends AppCompatActivity {
 
     public static boolean verificareLogat()
     {
-        if(sharedPreferences.contains(username) || !username2.isEmpty())
+        if(sharedPreferences.contains(username) || (username2!= null && !username2.isEmpty()))
         {
             return true;
         }

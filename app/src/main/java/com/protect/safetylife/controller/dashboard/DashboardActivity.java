@@ -19,6 +19,8 @@ import androidx.core.app.ActivityCompat;
 
 import com.protect.safetylife.Informatii.InformatieCont;
 import com.protect.safetylife.R;
+import com.protect.safetylife.controller.LandingActivity;
+import com.protect.safetylife.controller.login.LogInActivity;
 import com.protect.safetylife.controller.powerbutton.ScreenOnOffBackgroundService;
 
 /**
@@ -74,9 +76,9 @@ public class DashboardActivity extends AppCompatActivity {
         {
             String mesaj = "";
             if(InformatieCont.username2 == null)
-                mesaj = InformatieCont.sharedPreferences.getString(InformatieCont.username,"");
+                mesaj = InformatieCont.sharedPreferences.getString(InformatieCont.firstname,"")+" "+InformatieCont.sharedPreferences.getString(InformatieCont.lastname,"");
             else
-                mesaj = InformatieCont.username2;
+                mesaj = InformatieCont.firstname2+" "+InformatieCont.lastname2;
             mesajLogat.setText(mesaj);
         }
         progres=new ProgressDialog(this);
@@ -118,20 +120,27 @@ public class DashboardActivity extends AppCompatActivity {
     public void deconect(View view)
     {
         settings=findViewById(R.id.settings2);
-        SharedPreferences.Editor editor=InformatieCont.sharedPreferences.edit();
+
+        SharedPreferences.Editor editor = InformatieCont.sharedPreferences.edit();
+        InformatieCont.username2 = null;
         editor.clear();
-        editor.commit();
+        editor.apply();
+
         stopService(new Intent(this, ScreenOnOffBackgroundService.class));
+
+        Intent sessionIntent = new Intent(this, LandingActivity.class);
+        sessionIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(sessionIntent);
         finish();
     }
 
     /**
      * Opreste fortat iesirea pe butonul back
      */
-    @Override
-    public void onBackPressed() {
-        moveTaskToBack(false);
-    }
+//    @Override
+//    public void onBackPressed() {
+//        moveTaskToBack(false);
+//    }
 
     /**
      * METHOD NOT APPROVED, TO BE DISCUSSED

@@ -45,12 +45,15 @@ public class LogInActivity extends AppCompatActivity {
         /*
          * Initializam informatiile din cont si verificam daca este logat
          */
-        InformatieCont.sharedPreferences= getSharedPreferences(InformatieCont.login, Context.MODE_PRIVATE);
-        if(InformatieCont.verificareLogat())
-        {
-            Intent activity2=new Intent(this, DashboardActivity.class);
-            startActivity(activity2);
-        }
+//        InformatieCont.sharedPreferences= getSharedPreferences(InformatieCont.login, Context.MODE_PRIVATE);
+//        if(InformatieCont.verificareLogat())
+//        {
+//            Intent sessionIntent =new Intent(this,DashboardActivity.class);
+//            sessionIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            startActivity(sessionIntent);
+//            finish();
+//        }
+
 
         addButtonFunctionality();
         Animation.fadeIn(findViewById(R.id.back), 600);
@@ -116,8 +119,11 @@ public class LogInActivity extends AppCompatActivity {
      */
     private void logat()
     {
-        Intent activity2=new Intent(this, DashboardActivity.class);
-        startActivity(activity2);
+        Intent sessionIntent =new Intent(this,DashboardActivity.class);
+        // making sure activity stack is cleared before starting landing activity
+        sessionIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(sessionIntent);
+        finish();
     }
 
 }

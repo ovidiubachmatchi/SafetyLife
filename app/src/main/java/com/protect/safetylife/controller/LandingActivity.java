@@ -34,8 +34,10 @@ public class LandingActivity extends AppCompatActivity {
         InformatieCont.sharedPreferences= getSharedPreferences(InformatieCont.login, Context.MODE_PRIVATE);
         if(InformatieCont.verificareLogat())  // verificare sesiune logare
         {
-            Intent activity2=new Intent(this,DashboardActivity.class);
-            startActivity(activity2);
+            Intent sessionIntent =new Intent(this,DashboardActivity.class);
+            sessionIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(sessionIntent);
+            finish();
         }
         addButtonsFunctionality();
     }

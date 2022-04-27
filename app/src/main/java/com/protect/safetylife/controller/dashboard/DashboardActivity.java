@@ -20,6 +20,7 @@ import androidx.core.app.ActivityCompat;
 import com.protect.safetylife.Informatii.InformatieCont;
 import com.protect.safetylife.R;
 import com.protect.safetylife.controller.powerbutton.ScreenOnOffBackgroundService;
+import com.protect.safetylife.controller.safetytime.SafetyTimeActivity;
 
 /**
     Main activity
@@ -95,6 +96,11 @@ public class DashboardActivity extends AppCompatActivity {
             overridePendingTransition(R.anim.slide_down_foreground, R.anim.slide_down_background);
         });
 
+        watchBtn.setOnClickListener(v -> {
+            Intent intentChange = new Intent(this, SafetyTimeActivity.class);
+            startActivity(intentChange);
+            overridePendingTransition(R.anim.slide_down_foreground, R.anim.slide_down_background);
+        });
     }
 
     private void requestPermissions() {

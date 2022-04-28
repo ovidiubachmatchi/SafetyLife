@@ -21,7 +21,7 @@
         android:id="@+id/textViewTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="30 : 00 : 30"
+        android:text="00:00:00"
         android:textSize="45sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,18 +35,18 @@
         android:layout_width="330dp"
         android:layout_height="312dp"
         android:layout_centerInParent="true"
-        android:background="@drawable/drawable_circle_black"
+        android:background="@drawable/drawable_circle_white"
         android:indeterminate="false"
         android:max="100"
         android:progress="100"
-        android:progressDrawable="@drawable/drawable_circle_white"
+        android:progressDrawable="@drawable/drawable_circle_black"
         android:rotation="-90"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textViewTime"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/textViewTime"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.685" />
+        app:layout_constraintVertical_bias="0.68" />
 
     <Button
         android:id="@+id/buttonStartStop"

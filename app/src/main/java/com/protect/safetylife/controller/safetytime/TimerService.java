@@ -8,8 +8,10 @@ import android.os.IBinder;
 import java.util.Objects;
 
 public class TimerService extends Service {
-    private static CountDownTimer countDownTimer;
-    private static long timeCountInMilliSeconds;
+    static final String COUNTDOWN_UPDATED = "COUNTDOWN_UPDATED";
+    static final String TIME_REMAINING = "TIME_REMAINING";
+
+    private CountDownTimer countDownTimer;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -18,20 +20,16 @@ public class TimerService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        timeCountInMilliSeconds = intent.getLongExtra("TIME_COUNT", 0);
-        System.out.println(timeCountInMilliSeconds+"\n\n\n\n\n");
-
-        countDownTimer = new CountDownTimer(timeCountInMilliSeconds, 1000) {
+        countDownTimer = new CountDownTimer(intent.getLongExtra(TIME_REMAINING, 0), 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                Intent intent = new Intent("TIMER_UPDATED");
-                intent.putExtra("TIME_REMAINING", millisUntilFinished);
-                sendBroadcast(intent);
+                sendBroadcast(new Intent(COUNTDOWN_UPDATED).putExtra(TIME_REMAINING, millisUntilFinished));
             }
 
             @Override
             public void onFinish() {
-
+                sendBroadcast(new Intent(COUNTDOWN_UPDATED).putExtra(TIME_REMAINING, 0));
+                countDownTimer.cancel();
             }
         };
 
@@ -42,8 +40,9 @@ public class TimerService extends Service {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         if(!Objects.isNull(countDownTimer))
             countDownTimer.cancel();
+
+        super.onDestroy();
     }
 }

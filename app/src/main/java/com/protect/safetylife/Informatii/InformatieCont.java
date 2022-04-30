@@ -1,6 +1,5 @@
 package com.protect.safetylife.Informatii;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.appcompat.app.AppCompatActivity;

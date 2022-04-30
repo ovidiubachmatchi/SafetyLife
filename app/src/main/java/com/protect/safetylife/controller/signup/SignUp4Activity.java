@@ -22,8 +22,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.protect.safetylife.Informatii.InformatieCont;
 import com.protect.safetylife.R;
 import com.protect.safetylife.controller.LandingActivity;
+import com.protect.safetylife.controller.dashboard.DashboardActivity;
 import com.protect.safetylife.utils.Animation;
-import com.protect.safetylife.utils.ListViewAdapter;
+import com.protect.safetylife.utils.ListViewAdapterDiseases;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +34,7 @@ public class SignUp4Activity extends AppCompatActivity {
     @SuppressLint("StaticFieldLeak")
     public static ListView listView;
     public static ArrayList<String> boli;
-    public static ListViewAdapter adapter;
+    public static ListViewAdapterDiseases adapter;
     private ImageView addButton;
     private EditText dateInput;
     private ProgressDialog progressDialog;
@@ -67,8 +68,9 @@ public class SignUp4Activity extends AppCompatActivity {
         signupBtn.setOnClickListener(v -> {
             signupBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_press_animation));
             registration();
-            Intent intent = new Intent(this, LandingActivity.class);
-            startActivity(intent);
+            Intent sessionIntent =new Intent(this, LandingActivity.class);
+            sessionIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(sessionIntent);
            // registartion();
             //erase();
         });
@@ -89,7 +91,7 @@ public class SignUp4Activity extends AppCompatActivity {
         dateInput=findViewById(R.id.dateInput);
         listView=findViewById(R.id.listaBoli);
         boli=new ArrayList<>();
-        adapter=new ListViewAdapter(getApplicationContext(),boli);
+        adapter=new ListViewAdapterDiseases(getApplicationContext(),boli);
         addButton.setOnClickListener(view -> {
             String text=dateInput.getText().toString();
             if(text.length() == 0)

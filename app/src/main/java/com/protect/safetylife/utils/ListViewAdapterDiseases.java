@@ -17,12 +17,12 @@ import com.protect.safetylife.controller.signup.SignUp4Activity;
 
 import java.util.ArrayList;
 
-public class ListViewAdapter extends ArrayAdapter<String> {
+public class ListViewAdapterDiseases extends ArrayAdapter<String> {
     private ArrayList<String> list;
     private Context context;
 
 
-    public ListViewAdapter(Context context, ArrayList<String> items)
+    public ListViewAdapterDiseases(Context context, ArrayList<String> items)
     {
         super(context, R.layout.lista_boli,items);
         this.context=context;

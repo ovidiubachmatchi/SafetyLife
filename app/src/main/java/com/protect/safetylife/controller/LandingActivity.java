@@ -19,6 +19,7 @@ import com.protect.safetylife.Informatii.InformatieCont;
 import com.protect.safetylife.controller.dashboard.DashboardActivity;
 import com.protect.safetylife.controller.login.LogInActivity;
 import com.protect.safetylife.controller.signup.SignUp1Activity;
+import com.protect.safetylife.location.TimeHadler;
 
 public class LandingActivity extends AppCompatActivity {
 

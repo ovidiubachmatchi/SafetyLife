@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.protect.safetylife">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
@@ -22,6 +25,9 @@
             android:name=".controller.safetytime.SafetyTimeActivity"
             android:exported="false"
             android:launchMode="singleTop" />
+        <activity
+            android:name=".controller.dashboard.LocationMenu"
+            android:exported="false" />
         <activity
             android:name=".controller.dashboard.SosMenu"
             android:exported="false"
@@ -73,6 +79,10 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <receiver
+            android:name=".location.ExecutableServiceLocation"
+            android:enabled="true" />
     </application>
 
 </manifest>

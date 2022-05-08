@@ -95,8 +95,12 @@ public class DashboardActivity extends AppCompatActivity {
             overridePendingTransition(R.anim.slide_down_foreground, R.anim.slide_down_background);
         });
 
-    }
+        locationBtn.setOnClickListener(v-> {
+            Intent intentLocation=new Intent(this,LocationMenu.class);
+                startActivity(intentLocation);
+        });
 
+    }
     private void requestPermissions() {
         if (checkSelfPermission(Manifest.permission.SEND_SMS)
                 == PackageManager.PERMISSION_DENIED) {

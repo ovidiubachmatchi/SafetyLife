@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.protect.safetylife">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
@@ -12,6 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme">
+        <activity
+            android:name=".controller.dashboard.LocationMenu"
+            android:exported="false" />
         <activity
             android:name=".controller.dashboard.SosMenu"
             android:exported="false"
@@ -34,12 +40,12 @@
             android:name=".controller.signup.SignUp3Activity"
             android:launchMode="singleTop"
             android:theme="@style/Transparent"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".controller.signup.SignUp4Activity"
             android:launchMode="singleTop"
             android:theme="@style/Transparent"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".controller.login.LogInActivity"
             android:launchMode="singleTop"
@@ -63,6 +69,10 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <receiver
+            android:name=".location.ExecutableServiceLocation"
+            android:enabled="true" />
     </application>
 
 </manifest>

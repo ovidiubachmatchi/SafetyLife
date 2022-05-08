@@ -110,8 +110,8 @@ public class DashboardActivity extends AppCompatActivity {
             Intent intentLocation=new Intent(this,LocationMenu.class);
                 startActivity(intentLocation);
         });
-
     }
+
     private void requestPermissions() {
         if (checkSelfPermission(Manifest.permission.SEND_SMS)
                 == PackageManager.PERMISSION_DENIED) {

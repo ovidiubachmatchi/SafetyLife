@@ -33,6 +33,31 @@ public class SMSService {
     public static void sendSMS(List<String> numereSMS) {
         if (DashboardActivity.context == null)
             return;
+
+        Thread x = new Thread() {
+            @Override
+            public void run() {
+                System.out.println(1);
+                try {
+                    while(true){
+                        System.out.println("wait");
+                        if(messageToSend != "-")
+                            break;
+                    }
+                    System.out.println("complete");
+                    for (String numar : numereSMS) {
+                        SmsManager smsManager = SmsManager.getDefault();
+                        smsManager.sendTextMessage(numar, null, messageToSend, null, null);
+                    }
+                    System.out.println("sent");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        x.start();
+
         FusedLocationProviderClient fusedLocationProviderClient;
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(DashboardActivity.context);
         System.out.println("Trimis mesaj");
@@ -67,30 +92,6 @@ public class SMSService {
                 }
             }
         });
-
-
-        Thread x = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    while(true){
-                        if(messageToSend != "-")
-                            break;
-                    }
-
-                    for (String numar : numereSMS) {
-                        SmsManager smsManager = SmsManager.getDefault();
-                        smsManager.sendTextMessage(numar, null, messageToSend, null, null);
-
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        x.start();
-
     }
 
     public static BroadcastReceiver receiver = new BroadcastReceiver() {

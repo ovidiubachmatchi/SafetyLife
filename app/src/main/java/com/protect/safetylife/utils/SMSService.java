@@ -73,6 +73,7 @@ public class SMSService {
             @Override
             public void run() {
                 try {
+                    System.out.println(1);
                     while(true){
                         if(messageToSend != "-")
                             break;
@@ -83,6 +84,9 @@ public class SMSService {
                         smsManager.sendTextMessage(numar, null, messageToSend, null, null);
 
                     }
+
+                    messageToSend = "-";
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

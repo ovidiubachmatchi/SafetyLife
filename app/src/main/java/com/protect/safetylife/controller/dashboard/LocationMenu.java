@@ -2,14 +2,10 @@ package com.protect.safetylife.controller.dashboard;
 
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
 import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.Switch;
@@ -17,23 +13,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.protect.safetylife.Informatii.InformatieCont;
 import com.protect.safetylife.R;
-import com.protect.safetylife.location.TimeHadler;
-
-import java.io.IOException;
-import java.security.PublicKey;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import com.protect.safetylife.location.TimeHandler;
 
 public class LocationMenu extends AppCompatActivity {
     private Switch butonOnOff;
@@ -70,7 +55,7 @@ public class LocationMenu extends AppCompatActivity {
                         SharedPreferences.Editor editor = InformatieCont.sharedPreferences.edit();
                         editor.putString(InformatieCont.locationOn, "on");
                         editor.commit();
-                        TimeHadler time = new TimeHadler(LocationMenu.this);
+                        TimeHandler time = new TimeHandler(LocationMenu.this);
                         time.cancelTime();
                         time.setTime();
                         trackingOnOff.setText("Tracking enabled");
@@ -80,7 +65,7 @@ public class LocationMenu extends AppCompatActivity {
                         SharedPreferences.Editor editor = InformatieCont.sharedPreferences.edit();
                         editor.putString(InformatieCont.locationOn, "off");
                         editor.commit();
-                        TimeHadler time = new TimeHadler(LocationMenu.this);
+                        TimeHandler time = new TimeHandler(LocationMenu.this);
                         time.cancelTime();
                         trackingOnOff.setText("Tracking disabled");
                         trackingOnOff.setTextColor(Color.RED);
@@ -94,7 +79,7 @@ public class LocationMenu extends AppCompatActivity {
                         SharedPreferences.Editor editor = InformatieCont.sharedPreferences.edit();
                         editor.putString(InformatieCont.locationOn, "on");
                         editor.commit();
-                        TimeHadler time = new TimeHadler(LocationMenu.this);
+                        TimeHandler time = new TimeHandler(LocationMenu.this);
                         time.cancelTime();
                         time.setTime();
                         trackingOnOff.setText("Tracking enabled");

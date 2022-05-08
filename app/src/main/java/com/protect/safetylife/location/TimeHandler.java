@@ -6,10 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
-public class TimeHadler {
+public class TimeHandler {
     private Context context;
 
-    public TimeHadler(Context context)
+    public TimeHandler(Context context)
     {
         this.context=context;
     }
@@ -22,8 +22,9 @@ public class TimeHadler {
         {
             long after=20*5*1000;
             long every=20*5*1000;
+
             if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.CUPCAKE)
-            am.setInexactRepeating(AlarmManager.RTC_WAKEUP,after,every,sender);
+                am.setInexactRepeating(AlarmManager.RTC_WAKEUP,after,every,sender);
             else
             {
                 am.setRepeating(AlarmManager.ELAPSED_REALTIME,after,every,sender);

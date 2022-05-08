@@ -51,7 +51,7 @@ public class DashboardActivity extends AppCompatActivity {
         Intent backgroundService = new Intent(this, ScreenOnOffBackgroundService.class);
 
 
-        if(checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_DENIED) {
+        if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_DENIED) {
             requestPermissions();
         }
         if (!isMyServiceRunning(ScreenOnOffBackgroundService.class))
@@ -71,18 +71,17 @@ public class DashboardActivity extends AppCompatActivity {
          * Initializam si verificam logarea
          * la initializare se colecteaza datele din fisiere stocate se face privat
          */
-        InformatieCont.sharedPreferences= getSharedPreferences(InformatieCont.login, Context.MODE_PRIVATE);
+        InformatieCont.sharedPreferences = getSharedPreferences(InformatieCont.login, Context.MODE_PRIVATE);
         mesajLogat = findViewById(R.id.mesajLogat);
-        if(InformatieCont.verificareLogat())
-        {
+        if (InformatieCont.verificareLogat()) {
             String mesaj = "";
-            if(InformatieCont.username2 == null)
-                mesaj = InformatieCont.sharedPreferences.getString(InformatieCont.firstname,"")+" "+InformatieCont.sharedPreferences.getString(InformatieCont.lastname,"");
+            if (InformatieCont.username2 == null)
+                mesaj = InformatieCont.sharedPreferences.getString(InformatieCont.firstname, "") + " " + InformatieCont.sharedPreferences.getString(InformatieCont.lastname, "");
             else
-                mesaj = InformatieCont.firstname2+" "+InformatieCont.lastname2;
+                mesaj = InformatieCont.firstname2 + " " + InformatieCont.lastname2;
             mesajLogat.setText(mesaj);
         }
-        progres=new ProgressDialog(this);
+        progres = new ProgressDialog(this);
         sosBtn = findViewById(R.id.sosBtn);
         watchBtn = findViewById(R.id.watchBtn);
         locationBtn = findViewById(R.id.locationBtn);
@@ -103,10 +102,12 @@ public class DashboardActivity extends AppCompatActivity {
             startActivity(intentChange);
             overridePendingTransition(R.anim.slide_down_foreground, R.anim.slide_down_background);
         });
-    }
+
         locationBtn.setOnClickListener(v-> {
             Intent intentLocation=new Intent(this,LocationMenu.class);
-                startActivity(intentLocation);
+            startActivity(intentLocation);
+            overridePendingTransition(R.anim.slide_down_foreground, R.anim.slide_down_background);
+
         });
 
     }

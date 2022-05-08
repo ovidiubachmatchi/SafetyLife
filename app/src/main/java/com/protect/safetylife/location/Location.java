@@ -64,4 +64,36 @@ public class Location {
                 }
             });
     }
+
+    @SuppressLint("MissingPermission")
+    public static ArrayList<String> locationSend(Context context)
+    {
+        ArrayList<String> s=new ArrayList<>();
+        FusedLocationProviderClient fusedLocationProviderClient;
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context);
+        System.out.println("Trimis mesaj");
+        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<android.location.Location>() {
+            @Override
+            public void onComplete(@NonNull Task<android.location.Location> task) {
+                android.location.Location location=task.getResult();
+                System.out.println(location);
+                if(location!=null)
+                {
+                    try {
+                        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+                        List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
+                        System.out.println(addresses.get(0).getLatitude());
+                        s.add(addresses.get(0).getLatitude()+""); // latitudinea
+                        s.add(addresses.get(0).getLongitude()+""); //longitudinea
+                        s.add(addresses.get(0).getCountryName()+"");//tara
+                        s.add(addresses.get(0).getLocality()+""); //localitatea
+                        s.add(addresses.get(0).getAddressLine(0)+""); //adresa totala
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        return s;
+    }
 }

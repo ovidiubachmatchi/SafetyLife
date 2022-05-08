@@ -32,6 +32,7 @@ public class DashboardActivity extends AppCompatActivity {
     private TextView mesajLogat;
     private ProgressDialog progres;
     private static final int PERMISSION_REQUEST_CODE = 1;
+    public static Context context;
 
     private ImageView sosBtn;
     private ImageView watchBtn;
@@ -48,6 +49,8 @@ public class DashboardActivity extends AppCompatActivity {
         // setting visual layout
         setContentView(R.layout.menu);
         // starting background service
+        context=this;
+        System.out.println("---------------"+"context Dashboard:"+context);
         Intent backgroundService = new Intent(this, ScreenOnOffBackgroundService.class);
 
 
@@ -103,7 +106,6 @@ public class DashboardActivity extends AppCompatActivity {
             startActivity(intentChange);
             overridePendingTransition(R.anim.slide_down_foreground, R.anim.slide_down_background);
         });
-    }
         locationBtn.setOnClickListener(v-> {
             Intent intentLocation=new Intent(this,LocationMenu.class);
                 startActivity(intentLocation);

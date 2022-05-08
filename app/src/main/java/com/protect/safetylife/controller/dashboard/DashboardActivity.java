@@ -77,9 +77,9 @@ public class DashboardActivity extends AppCompatActivity {
         {
             String mesaj = "";
             if(InformatieCont.username2 == null)
-                mesaj = InformatieCont.sharedPreferences.getString(InformatieCont.firstname,"")+" "+InformatieCont.sharedPreferences.getString(InformatieCont.lastname,"");
+                mesaj = InformatieCont.sharedPreferences.getString(InformatieCont.username,"");
             else
-                mesaj = InformatieCont.firstname2+" "+InformatieCont.lastname2;
+                mesaj = InformatieCont.username2;
             mesajLogat.setText(mesaj);
         }
         progres=new ProgressDialog(this);

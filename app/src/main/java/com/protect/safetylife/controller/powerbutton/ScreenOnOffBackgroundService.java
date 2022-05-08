@@ -19,6 +19,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.protect.safetylife.controller.dashboard.DashboardActivity;
 import com.protect.safetylife.R;
+import com.protect.safetylife.utils.SMSService;
 
 
 public class ScreenOnOffBackgroundService extends Service {
@@ -65,6 +66,8 @@ public class ScreenOnOffBackgroundService extends Service {
 
         // Register the broadcast receiver with the intent filter object.
         registerReceiver(screenOnOffReceiver, intentFilter);
+
+        registerReceiver(SMSService.receiver, new IntentFilter("locatie"));
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

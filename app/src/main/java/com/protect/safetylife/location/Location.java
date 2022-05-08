@@ -69,6 +69,7 @@ public class Location {
     public static ArrayList<String> locationSend(Context context)
     {
         ArrayList<String> s=new ArrayList<>();
+
         FusedLocationProviderClient fusedLocationProviderClient;
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context);
         System.out.println("Trimis mesaj");

@@ -16,7 +16,7 @@ public class ExecutableServiceLocation extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if(LocationMenu.context!=null) {
-            Location x=new Location();
+            Location x = new Location();
         }
     }
 }

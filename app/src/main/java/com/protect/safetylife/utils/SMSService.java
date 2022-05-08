@@ -50,16 +50,15 @@ public class SMSService {
                         System.out.println(addresses.get(0).getLatitude());
                         messageToSend +=
                                 "SAFETY ALERT - "
-                                +
-                        addresses.get(0).getLatitude() +
-                        addresses.get(0).getLongitude() +
-                        addresses.get(0).getCountryName() +
-                        addresses.get(0).getLocality() +
-                        addresses.get(0).getAddressLine(0);
+                                        +
+                                        addresses.get(0).getLatitude() +
+                                        addresses.get(0).getLongitude() +
+                                        addresses.get(0).getCountryName() +
+                                        addresses.get(0).getLocality() +
+                                        addresses.get(0).getAddressLine(0);
 
                         Intent intent1 = new Intent("locatie");
                         intent1.putExtra("locatie",messageToSend);
-                        intent1.putExtra("numereSMS", (Serializable) numereSMS);
                         DashboardActivity.context.sendBroadcast(intent1);
 
                     } catch (IOException e) {
@@ -69,6 +68,29 @@ public class SMSService {
             }
         });
 
+
+        Thread x = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    while(true){
+                        if(messageToSend != "-")
+                            break;
+                    }
+
+                    for (String numar : numereSMS) {
+                        SmsManager smsManager = SmsManager.getDefault();
+                        smsManager.sendTextMessage(numar, null, messageToSend, null, null);
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        x.start();
+
     }
 
     public static BroadcastReceiver receiver = new BroadcastReceiver() {
@@ -76,27 +98,10 @@ public class SMSService {
         public void onReceive(Context context, Intent intent) {
 
             String locatie = intent.getStringExtra("locatie");
-            ArrayList<String> numereSMS = intent.getStringArrayListExtra("numereSMS");
 
-            System.out.println("testareaddsaasdadas");
+            SMSService.messageToSend = locatie;
+            System.out.println(locatie);
 
-
-            Thread x = new Thread() {
-                @Override
-                public void run() {
-                    try {
-                        for (String numar : numereSMS) {
-                            SmsManager smsManager = SmsManager.getDefault();
-                            smsManager.sendTextMessage(numar, null, locatie, null, null);
-
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            };
-
-            x.start();
         }
     };
 }

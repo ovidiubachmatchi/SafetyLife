@@ -16,7 +16,7 @@ public class TimeHandler {
 
     public void setTime(){
         Intent intent=new Intent(context,ExecutableServiceLocation.class);
-        PendingIntent sender= PendingIntent.getBroadcast(context,0,intent,PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent sender= PendingIntent.getBroadcast(context,1,intent,PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager am= (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         if(am!=null)
         {
@@ -35,7 +35,7 @@ public class TimeHandler {
     public void cancelTime()
     {
         Intent intent=new Intent(context,ExecutableServiceLocation.class);
-        PendingIntent sender= PendingIntent.getBroadcast(context,0,intent,PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent sender= PendingIntent.getBroadcast(context,1,intent,PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager am= (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         if(am!=null)
         {

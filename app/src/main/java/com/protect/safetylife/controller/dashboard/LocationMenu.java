@@ -61,7 +61,7 @@ public class LocationMenu extends AppCompatActivity {
                         time.setTime();
                         trackingOnOff.setText("Tracking enabled");
                         trackingOnOff.setTextColor(Color.GREEN);
-                       // Toast.makeText(LocationMenu.this,"Location tracking is enabled", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LocationMenu.this,"Location tracking is enabled", Toast.LENGTH_SHORT).show();
                     } else {
                         SharedPreferences.Editor editor = InformatieCont.sharedPreferences.edit();
                         editor.putString(InformatieCont.locationOn, "off");
@@ -70,7 +70,7 @@ public class LocationMenu extends AppCompatActivity {
                         time.cancelTime();
                         trackingOnOff.setText("Tracking disabled");
                         trackingOnOff.setTextColor(Color.RED);
-                      //  Toast.makeText(LocationMenu.this,"Location tracking is disabled", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LocationMenu.this,"Location tracking is disabled", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else
@@ -85,14 +85,14 @@ public class LocationMenu extends AppCompatActivity {
                         time.setTime();
                         trackingOnOff.setText("Tracking enabled");
                         trackingOnOff.setTextColor(Color.GREEN);
-                       // Toast.makeText(LocationMenu.this,"Location tracking is enabled", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LocationMenu.this,"Location tracking is enabled", Toast.LENGTH_SHORT).show();
                     } else {
                         SharedPreferences.Editor editor = InformatieCont.sharedPreferences.edit();
                         editor.putString(InformatieCont.locationOn, "off");
                         editor.commit();
                         trackingOnOff.setText("Tracking disabled");
                         trackingOnOff.setTextColor(Color.RED);
-                       // Toast.makeText(LocationMenu.this,"Location tracking is disabled", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LocationMenu.this,"Location tracking is disabled", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

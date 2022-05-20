@@ -51,11 +51,10 @@ public class SMSService {
                         messageToSend +=
                                 "SAFETY ALERT - "
                                 +
-                        addresses.get(0).getLatitude() +
-                        addresses.get(0).getLongitude() +
-                        addresses.get(0).getCountryName() +
-                        addresses.get(0).getLocality() +
+                        addresses.get(0).getLatitude() + " " +
+                        addresses.get(0).getLongitude() + " " +
                         addresses.get(0).getAddressLine(0);
+
 
                         Intent intent1 = new Intent("locatie");
                         intent1.putExtra("locatie",messageToSend);

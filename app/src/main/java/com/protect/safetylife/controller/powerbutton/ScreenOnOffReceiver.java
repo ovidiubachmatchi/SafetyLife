@@ -41,7 +41,7 @@ public class ScreenOnOffReceiver extends BroadcastReceiver {
     private void serviceStart() {
         Toast.makeText(context, "Power Button pressed 5 times", Toast.LENGTH_LONG).show();
         // TODO HARDCODED PHONE NUMBERS
-        SMSService.sendSMS(Arrays.asList("0755312170"));
+        SMSService.sendSMS(Arrays.asList("0755312170","0742895881Z"));
     }
 
     @Override

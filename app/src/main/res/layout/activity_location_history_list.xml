@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".location.LocationHistoryList">
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Location History"
+        android:textColor="#6C63FF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="226dp"
+        android:layout_height="136dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/listLocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_undraw_map_re_60yf" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="428dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="464dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/listLocation"
+        app:srcCompat="@drawable/ic_undraw_bike_ride_7xit" />
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="382dp"
+        android:layout_height="387dp"
+        android:layout_marginTop="128dp"
+        app:layout_constraintBottom_toBottomOf="@+id/listLocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_undraw_traveling_re_weve" />
+
+    <ListView
+        android:id="@+id/listLocation"
+        android:layout_width="392dp"
+        android:layout_height="467dp"
+        android:layout_marginTop="48dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20"
+        app:layout_constraintVertical_bias="0.534">
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/locationHistoryNotFound"
+        android:layout_width="179dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="28dp"
+        android:textColor="#ED0D0D"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView15"
+        app:layout_constraintEnd_toStartOf="@+id/imageView12"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="132dp"
+        android:layout_height="44dp"
+        android:autofillHints=""
+        android:background="@drawable/login_signup_gray_input_box"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="date"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/locationHistoryNotFound"
+        app:layout_constraintEnd_toEndOf="@+id/locationHistoryNotFound"
+        app:layout_constraintHorizontal_bias="0.589"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20"
+        app:layout_constraintVertical_bias="0.803"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

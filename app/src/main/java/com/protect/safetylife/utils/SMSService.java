@@ -51,11 +51,9 @@ public class SMSService {
                         messageToSend +=
                                 "SAFETY ALERT - "
                                 +
-                        addresses.get(0).getLatitude() +
-                        addresses.get(0).getLongitude() +
-                        addresses.get(0).getCountryName() +
-                        addresses.get(0).getLocality() +
-                        addresses.get(0).getAddressLine(0);
+                        addresses.get(0).getLatitude() + " " +
+                        addresses.get(0).getLongitude() + " ";
+
 
                         Intent intent1 = new Intent("locatie");
                         intent1.putExtra("locatie",messageToSend);
@@ -88,7 +86,6 @@ public class SMSService {
                         for (String numar : numereSMS) {
                             SmsManager smsManager = SmsManager.getDefault();
                             smsManager.sendTextMessage(numar, null, locatie, null, null);
-
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

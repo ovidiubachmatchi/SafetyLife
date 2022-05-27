@@ -3,11 +3,14 @@ package com.protect.safetylife.controller.dashboard;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -19,12 +22,16 @@ import androidx.core.app.ActivityCompat;
 
 import com.protect.safetylife.Informatii.InformatieCont;
 import com.protect.safetylife.R;
+import com.protect.safetylife.controller.LandingActivity;
+import com.protect.safetylife.location.LocationHistoryList;
+import com.protect.safetylife.location.MapsLocation;
 import com.protect.safetylife.location.TimeHandler;
 
 public class LocationMenu extends AppCompatActivity {
     private Switch butonOnOff;
     public static Context context;
     private TextView trackingOnOff;
+    private Button history;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +55,14 @@ public class LocationMenu extends AppCompatActivity {
             Toast.makeText(this,"Location tracking is disabled", Toast.LENGTH_SHORT).show();
 
         }
+        history=findViewById(R.id.location_history);
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent sessionIntent =new Intent(LocationMenu.this, LocationHistoryList.class);
+                startActivity(sessionIntent);
+            }
+        });
         butonOnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {

@@ -1,8 +1,11 @@
 package com.protect.safetylife.controller.dashboard;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ProgressDialog;
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,14 +18,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import com.protect.safetylife.Informatii.InformatieCont;
 import com.protect.safetylife.R;
 import com.protect.safetylife.controller.LandingActivity;
-import com.protect.safetylife.controller.login.LogInActivity;
 import com.protect.safetylife.controller.powerbutton.ScreenOnOffBackgroundService;
 import com.protect.safetylife.controller.safetytime.SafetyTimeActivity;
+import com.protect.safetylife.controller.stealprotection.AdminReceiver;
+import com.protect.safetylife.controller.stealprotection.CameraService;
 
 /**
     Main activity
@@ -106,10 +109,29 @@ public class DashboardActivity extends AppCompatActivity {
             startActivity(intentChange);
             overridePendingTransition(R.anim.slide_down_foreground, R.anim.slide_down_background);
         });
+
         locationBtn.setOnClickListener(v-> {
             Intent intentLocation=new Intent(this,LocationMenu.class);
                 startActivity(intentLocation);
         });
+
+        stealBtn.setOnClickListener(v-> {
+            DevicePolicyManager devicePolicyManager = (DevicePolicyManager) getSystemService(DEVICE_POLICY_SERVICE);
+            ComponentName compName = new ComponentName(this, AdminReceiver.class);
+            if(!devicePolicyManager.isAdminActive(compName)) {
+                Intent intent1 = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+                intent1.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, compName);
+                intent1.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "Additional text explaining why we need this permission");
+                startActivity(intent1);
+            }
+        });
+
+        Intent cameraService = new Intent(this, CameraService.class);
+
+        if (!isMyServiceRunning(CameraService.class)) {
+            startService(cameraService);
+        }
+
     }
 
     private void requestPermissions() {

@@ -12,6 +12,7 @@ import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +32,7 @@ public class LocationMenu extends AppCompatActivity {
     private Switch butonOnOff;
     public static Context context;
     private TextView trackingOnOff;
-    private Button history;
+    private ImageView history;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

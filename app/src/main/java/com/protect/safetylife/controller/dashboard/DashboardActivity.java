@@ -26,6 +26,7 @@ import com.protect.safetylife.controller.powerbutton.ScreenOnOffBackgroundServic
 import com.protect.safetylife.controller.safetytime.SafetyTimeActivity;
 import com.protect.safetylife.controller.stealprotection.AdminReceiver;
 import com.protect.safetylife.controller.stealprotection.CameraService;
+import com.protect.safetylife.controller.stealprotection.StealActivity;
 
 /**
     Main activity
@@ -52,12 +53,12 @@ public class DashboardActivity extends AppCompatActivity {
         // setting visual layout
         setContentView(R.layout.menu);
         // starting background service
-        context=this;
-        System.out.println("---------------"+"context Dashboard:"+context);
+        context = this;
+        System.out.println("---------------" + "context Dashboard:" + context);
         Intent backgroundService = new Intent(this, ScreenOnOffBackgroundService.class);
 
 
-        if(checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_DENIED) {
+        if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_DENIED) {
             requestPermissions();
         }
         if (!isMyServiceRunning(ScreenOnOffBackgroundService.class))
@@ -77,18 +78,17 @@ public class DashboardActivity extends AppCompatActivity {
          * Initializam si verificam logarea
          * la initializare se colecteaza datele din fisiere stocate se face privat
          */
-        InformatieCont.sharedPreferences= getSharedPreferences(InformatieCont.login, Context.MODE_PRIVATE);
+        InformatieCont.sharedPreferences = getSharedPreferences(InformatieCont.login, Context.MODE_PRIVATE);
         mesajLogat = findViewById(R.id.mesajLogat);
-        if(InformatieCont.verificareLogat())
-        {
+        if (InformatieCont.verificareLogat()) {
             String mesaj = "";
-            if(InformatieCont.username2 == null)
-                mesaj = InformatieCont.sharedPreferences.getString(InformatieCont.username,"");
+            if (InformatieCont.username2 == null)
+                mesaj = InformatieCont.sharedPreferences.getString(InformatieCont.username, "");
             else
                 mesaj = InformatieCont.username2;
             mesajLogat.setText(mesaj);
         }
-        progres=new ProgressDialog(this);
+        progres = new ProgressDialog(this);
         sosBtn = findViewById(R.id.sosBtn);
         watchBtn = findViewById(R.id.watchBtn);
         locationBtn = findViewById(R.id.locationBtn);
@@ -110,21 +110,27 @@ public class DashboardActivity extends AppCompatActivity {
             overridePendingTransition(R.anim.slide_down_foreground, R.anim.slide_down_background);
         });
 
-        locationBtn.setOnClickListener(v-> {
-            Intent intentLocation=new Intent(this,LocationMenu.class);
-                startActivity(intentLocation);
+        locationBtn.setOnClickListener(v -> {
+            Intent intentLocation = new Intent(this, LocationMenu.class);
+            startActivity(intentLocation);
         });
 
-        stealBtn.setOnClickListener(v-> {
-            DevicePolicyManager devicePolicyManager = (DevicePolicyManager) getSystemService(DEVICE_POLICY_SERVICE);
+        stealBtn.setOnClickListener(v -> {
+            /*DevicePolicyManager devicePolicyManager = (DevicePolicyManager) getSystemService(DEVICE_POLICY_SERVICE);
             ComponentName compName = new ComponentName(this, AdminReceiver.class);
             if(!devicePolicyManager.isAdminActive(compName)) {
                 Intent intent1 = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
                 intent1.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, compName);
                 intent1.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "Additional text explaining why we need this permission");
                 startActivity(intent1);
-            }
+            }*/
+            Intent intentSteal = new Intent(this, StealActivity.class);
+            startActivity(intentSteal);
+            //StealActivity.generateList();
+            overridePendingTransition(R.anim.slide_down_foreground, R.anim.slide_down_background);
         });
+
+        StealActivity.generateList();
 
         Intent cameraService = new Intent(this, CameraService.class);
 

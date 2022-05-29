@@ -108,9 +108,7 @@ public class AdminReceiver extends DeviceAdminReceiver {
         };
 
         x.start();
-
         PhotoManager.takePhoto(DashboardActivity.context, true);
-
     }
 
     @Override

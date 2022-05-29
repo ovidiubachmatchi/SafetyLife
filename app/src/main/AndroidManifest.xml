@@ -47,6 +47,7 @@
         <activity
             android:name=".controller.dashboard.SosMenu"
             android:exported="false"
+            android:windowSoftInputMode="stateHidden|adjustPan"
             android:launchMode="singleTop"
             android:theme="@style/Transparent" />
         <activity

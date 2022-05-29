@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.protect.safetylife">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -10,6 +9,12 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-feature android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -36,9 +41,15 @@
             android:name=".controller.safetytime.TimerService"
             android:enabled="true"
             android:exported="false" />
-
+        <service android:name=".controller.stealprotection.CameraService"
+            android:enabled="true"
+            android:exported="false" />
         <activity
             android:name=".controller.safetytime.SafetyTimeActivity"
+            android:exported="false"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".controller.stealprotection.StealActivity"
             android:exported="false"
             android:launchMode="singleTop" />
         <activity
@@ -100,6 +111,21 @@
         <receiver
             android:name=".location.ExecutableServiceLocation"
             android:enabled="true" />
+
+
+        <receiver android:name=".controller.stealprotection.AdminReceiver"
+            android:permission="android.permission.BIND_DEVICE_ADMIN"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_policies" />
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+                <action android:name="android.app.action.ACTION_PASSWORD_FAILED"/>
+                <action android:name="android.app.action.ACTION_PASSWORD_SUCCEEDED"/>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

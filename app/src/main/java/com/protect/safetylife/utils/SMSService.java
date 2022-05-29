@@ -1,7 +1,5 @@
 package com.protect.safetylife.utils;
 
-import static com.protect.safetylife.Informatii.InformatieCont.sharedPreferences;
-
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;

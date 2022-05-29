@@ -16,14 +16,25 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.protect.safetylife.Informatii.InformatieCont;
 import com.protect.safetylife.R;
+import com.protect.safetylife.utils.SMSService;
 
+import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -48,12 +59,28 @@ public class SafetyTimeActivity extends AppCompatActivity {
             textViewTime.setText(timeFormatter(millisUntilFinished));
             progressBarCircle.setProgress((int) (millisUntilFinished / 1000));
 
-            if(millisUntilFinished == 0)
+            if(millisUntilFinished == 0) {
                 stopCountDown();
+
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                DocumentReference docRef = db.collection("contacts").document(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
+                docRef.get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists() && document.getData().get("smsContacts") != null) {
+                            for (String numar :(ArrayList<String>) Objects.requireNonNull(document.getData().get("smsContacts"))) {
+                                SmsManager smsManager = SmsManager.getDefault();
+                                smsManager.sendTextMessage(numar, null, "Safety Time! Probabil am nevoie de ajutor.", null, null);
+                            }
+                        }
+                    } else {
+                        System.out.println("crapa");
+                        Log.d("getContact", "get failed with ", task.getException());
+                    }
+                });
+            }
         }
     };
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,12 +155,14 @@ public class SafetyTimeActivity extends AppCompatActivity {
     public void startStop(View view) {
         if (counterIsActive) {
             stopCountDown();
-            pushNotification(this, "Countdown stopped",
-                    "Countdown stopped with " + timeFormatter(millisUntilFinished) + " time left.");
+            Toast.makeText(this, "Countdown stopped: " + timeFormatter(millisUntilFinished), Toast.LENGTH_LONG).show();
         } else {
+            if(getCountDownDuration() <  30000){
+                Toast.makeText(this, "Minimum time is 30 seconds", Toast.LENGTH_LONG).show();
+                return;
+            }
             startCountDown();
-            pushNotification(this, "Countdown started",
-                    "Countdown set to " + timeFormatter(timeTotalInMilliSeconds) + ".");
+            Toast.makeText(this, "Countdown started: " + timeFormatter(timeTotalInMilliSeconds), Toast.LENGTH_LONG).show();
         }
     }
 

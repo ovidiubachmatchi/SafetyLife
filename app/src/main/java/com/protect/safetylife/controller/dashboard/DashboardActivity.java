@@ -1,29 +1,47 @@
 package com.protect.safetylife.controller.dashboard;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ProgressDialog;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 
 import com.protect.safetylife.Informatii.InformatieCont;
 import com.protect.safetylife.R;
 import com.protect.safetylife.controller.LandingActivity;
 import com.protect.safetylife.controller.powerbutton.ScreenOnOffBackgroundService;
 import com.protect.safetylife.controller.safetytime.SafetyTimeActivity;
+
+import com.protect.safetylife.fake_call.InitializationCall;
+import com.protect.safetylife.recorder.Recorder;
+import com.protect.safetylife.recorder.RecorderMenu;
+
+import java.io.File;
+import java.util.Calendar;
+
 import com.protect.safetylife.controller.stealprotection.CameraService;
 import com.protect.safetylife.controller.stealprotection.StealActivity;
 
@@ -42,9 +60,9 @@ public class DashboardActivity extends AppCompatActivity {
     private ImageView locationBtn;
     private ImageView cameraBtn;
     private ImageView stealBtn;
-    private ImageView reminderBtn;
     private ImageView fakeCallBtn;
     private ImageView settings;
+    public static String pathRecord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +104,7 @@ public class DashboardActivity extends AppCompatActivity {
             else
                 mesaj = InformatieCont.username2;
             mesajLogat.setText(mesaj);
+            InformatieCont.fakeCall2=InformatieCont.sharedPreferences.getString(InformatieCont.fakeCallOn,"");
         }
         progres = new ProgressDialog(this);
         sosBtn = findViewById(R.id.sosBtn);
@@ -93,7 +112,6 @@ public class DashboardActivity extends AppCompatActivity {
         locationBtn = findViewById(R.id.locationBtn);
         cameraBtn = findViewById(R.id.cameraBtn);
         stealBtn = findViewById(R.id.stealBtn);
-        reminderBtn = findViewById(R.id.reminderBtn);
         fakeCallBtn = findViewById(R.id.fakeCallBtn);
 
 
@@ -109,10 +127,28 @@ public class DashboardActivity extends AppCompatActivity {
             overridePendingTransition(R.anim.slide_down_foreground, R.anim.slide_down_background);
         });
 
-        locationBtn.setOnClickListener(v -> {
-            Intent intentLocation = new Intent(this, LocationMenu.class);
+        locationBtn.setOnClickListener(v-> {
+            Intent intentLocation=new Intent(this,LocationMenu.class);
             startActivity(intentLocation);
+            overridePendingTransition(R.anim.slide_down_foreground, R.anim.slide_down_background);
+
         });
+        fakeCallBtn.setOnClickListener(v-> {
+            Intent intent4=new Intent(this, InitializationCall.class);
+            startActivity(intent4);
+            overridePendingTransition(R.anim.slide_down_foreground, R.anim.slide_down_background);
+        });
+
+
+        pathRecord=getRecordingFilePath();
+        if(isMicrophonePresent())
+        {
+            getMicrofonPermision();
+        }
+
+        cameraBtn.setOnClickListener(v->{
+            Intent intentRecorder = new Intent(this, RecorderMenu.class);
+            startActivity(intentRecorder);
 
         stealBtn.setOnClickListener(v -> {
             Intent intentSteal = new Intent(this, StealActivity.class);
@@ -128,6 +164,29 @@ public class DashboardActivity extends AppCompatActivity {
             if (!isMyServiceRunning(CameraService.class)) {
                 startService(cameraService);
             }
+        }
+    }
+
+    private static String getRecordingFilePath()
+    {
+        ContextWrapper contextWrapper=new ContextWrapper(context.getApplicationContext());
+        File musicD=contextWrapper.getExternalFilesDir(Environment.DIRECTORY_MUSIC);
+        File file=new File(musicD,"recording_" + Calendar.getInstance().getTime() +".mp3");
+        return file.getPath();
+    }
+
+    private  boolean isMicrophonePresent()
+    {
+        if(this.getPackageManager().hasSystemFeature(PackageManager.FEATURE_MICROPHONE))
+        {
+            return true;
+        }
+        return false;
+    }
+    private void getMicrofonPermision(){
+        if(ContextCompat.checkSelfPermission(this,Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED)
+        {
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.RECORD_AUDIO},200);
         }
     }
 

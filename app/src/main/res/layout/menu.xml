@@ -144,7 +144,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:adjustViewBounds="true"
-                android:text="Share real\ntime location"
+                android:text="Location history"
                 android:textColor="#272727"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -166,10 +166,11 @@
                 android:id="@+id/stealBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="-10dp"
                 app:layout_constraintStart_toStartOf="@+id/cameraBtn"
                 app:layout_constraintTop_toBottomOf="@+id/cameraBtn"
-                app:srcCompat="@drawable/half_div" />
+                app:srcCompat="@drawable/div" />
 
             <ImageView
                 android:id="@+id/fakeCallBtn"
@@ -187,7 +188,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:adjustViewBounds="true"
-                android:text="Record your\ncamera"
+                android:text="Record your\nmicrophone"
                 android:textColor="#272727"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -200,16 +201,14 @@
                 android:id="@+id/textView28"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="49dp"
+                android:layout_marginTop="24dp"
                 android:adjustViewBounds="true"
-                android:text="Phone steal\nprotection"
+                android:text="Phone steal protection"
                 android:textColor="#272727"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/stealBtn"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.179"
                 app:layout_constraintStart_toStartOf="@+id/stealBtn"
                 app:layout_constraintTop_toTopOf="@+id/stealBtn" />
 
@@ -230,15 +229,6 @@
                 app:layout_constraintTop_toTopOf="@+id/fakeCallBtn" />
 
             <ImageView
-                android:id="@+id/reminderBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="@+id/fakeCallBtn"
-                app:layout_constraintTop_toBottomOf="@+id/fakeCallBtn"
-                app:srcCompat="@drawable/half_div" />
-
-            <ImageView
                 android:id="@+id/imageView21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -256,36 +246,11 @@
                 android:layout_marginStart="16dp"
                 app:layout_constraintBottom_toBottomOf="@+id/stealBtn"
                 app:layout_constraintEnd_toEndOf="@+id/stealBtn"
+                app:layout_constraintHorizontal_bias="0.856"
                 app:layout_constraintStart_toStartOf="@+id/stealBtn"
                 app:layout_constraintTop_toBottomOf="@+id/textView28"
+                app:layout_constraintVertical_bias="0.304"
                 app:srcCompat="@drawable/illustration_front_camera" />
-
-            <TextView
-                android:id="@+id/textView29"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="72dp"
-                android:adjustViewBounds="true"
-                android:text="Reminders"
-                android:textColor="#272727"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/reminderBtn"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/reminderBtn"
-                app:layout_constraintTop_toTopOf="@+id/reminderBtn" />
-
-            <ImageView
-                android:id="@+id/imageView29"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/reminderBtn"
-                app:layout_constraintEnd_toEndOf="@+id/reminderBtn"
-                app:layout_constraintStart_toStartOf="@+id/reminderBtn"
-                app:layout_constraintTop_toBottomOf="@+id/textView29"
-                app:srcCompat="@drawable/illustration_reminder" />
 
             <ImageView
                 android:id="@+id/imageView30"
@@ -329,6 +294,19 @@
                 app:layout_constraintStart_toStartOf="@+id/locationBtn"
                 app:layout_constraintTop_toBottomOf="@+id/textView23"
                 app:srcCompat="@drawable/illustration_location" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:adjustViewBounds="true"
+                android:text="Take a picture when the\npassword is entered \nwrong."
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/stealBtn"
+                app:layout_constraintHorizontal_bias="0.157"
+                app:layout_constraintStart_toStartOf="@+id/stealBtn"
+                app:layout_constraintTop_toTopOf="@+id/stealBtn" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

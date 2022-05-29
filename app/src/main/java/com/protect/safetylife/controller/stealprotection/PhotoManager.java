@@ -96,6 +96,9 @@ public class PhotoManager {
                     }
                 });*/
 
+        if(camera == null)
+            return;
+
         camera.takePicture(ContextCompat.getMainExecutor(context), new ImageCapture.OnImageCapturedCallback(){
             @Override
             public void onCaptureSuccess(@NonNull ImageProxy image) {

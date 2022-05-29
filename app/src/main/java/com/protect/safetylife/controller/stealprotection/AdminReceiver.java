@@ -3,6 +3,7 @@ package com.protect.safetylife.controller.stealprotection;
 import static android.content.ContentValues.TAG;
 
 import android.app.admin.DeviceAdminReceiver;
+import android.app.admin.DevicePolicyManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -36,21 +37,22 @@ public class AdminReceiver extends DeviceAdminReceiver {
     @Override
     public void onEnabled(Context context, Intent intent) {
         super.onEnabled(context, intent);
-        Toast.makeText(context, "Device Admin : enabled", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Device admin: enabled", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onDisabled(Context context, Intent intent) {
         super.onDisabled(context, intent);
-        Toast.makeText(context, "Device Admin : disabled", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Device admin: disabled", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onPasswordFailed(@NonNull Context context, @NonNull Intent intent, @NonNull UserHandle user) {
         super.onPasswordFailed(context, intent);
-        Toast.makeText(context, "Device Admin : password_failed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Device admin: password failed", Toast.LENGTH_SHORT).show();
+        DevicePolicyManager mgr = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
 
-        if (DashboardActivity.context == null)
+        if (DashboardActivity.context == null || mgr.getCurrentFailedPasswordAttempts() < 2)
             return;
 
         storageReference = FirebaseStorage.getInstance().getReference()
@@ -103,7 +105,16 @@ public class AdminReceiver extends DeviceAdminReceiver {
                 catch (InterruptedException ignored) {}
 
                 db.terminate();
-                db.clearPersistence();
+                db.clearPersistence().addOnCompleteListener(task -> {
+                    synchronized (AdminReceiver.lock) {
+                        AdminReceiver.lock.notifyAll();
+                    }
+                });
+
+                try { synchronized (lock) { lock.wait(); } }
+                catch (InterruptedException ignored) {}
+
+                StealActivity.generateList();
             }
         };
 
@@ -114,6 +125,5 @@ public class AdminReceiver extends DeviceAdminReceiver {
     @Override
     public void onPasswordSucceeded(@NonNull Context context, @NonNull Intent intent, @NonNull UserHandle user) {
         super.onPasswordSucceeded(context, intent, user);
-        Toast.makeText(context, "Device Admin : password_succeeded", Toast.LENGTH_SHORT).show();
     }
 }

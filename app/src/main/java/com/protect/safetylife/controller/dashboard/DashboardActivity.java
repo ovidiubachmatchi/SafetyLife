@@ -24,7 +24,6 @@ import com.protect.safetylife.R;
 import com.protect.safetylife.controller.LandingActivity;
 import com.protect.safetylife.controller.powerbutton.ScreenOnOffBackgroundService;
 import com.protect.safetylife.controller.safetytime.SafetyTimeActivity;
-import com.protect.safetylife.controller.stealprotection.AdminReceiver;
 import com.protect.safetylife.controller.stealprotection.CameraService;
 import com.protect.safetylife.controller.stealprotection.StealActivity;
 
@@ -116,28 +115,20 @@ public class DashboardActivity extends AppCompatActivity {
         });
 
         stealBtn.setOnClickListener(v -> {
-            /*DevicePolicyManager devicePolicyManager = (DevicePolicyManager) getSystemService(DEVICE_POLICY_SERVICE);
-            ComponentName compName = new ComponentName(this, AdminReceiver.class);
-            if(!devicePolicyManager.isAdminActive(compName)) {
-                Intent intent1 = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
-                intent1.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, compName);
-                intent1.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "Additional text explaining why we need this permission");
-                startActivity(intent1);
-            }*/
             Intent intentSteal = new Intent(this, StealActivity.class);
             startActivity(intentSteal);
-            //StealActivity.generateList();
             overridePendingTransition(R.anim.slide_down_foreground, R.anim.slide_down_background);
         });
 
         StealActivity.generateList();
 
-        Intent cameraService = new Intent(this, CameraService.class);
-
-        if (!isMyServiceRunning(CameraService.class)) {
-            startService(cameraService);
+        InformatieCont.sharedPreferences = getSharedPreferences(InformatieCont.login, Context.MODE_PRIVATE);
+        if (InformatieCont.sharedPreferences.contains(InformatieCont.steal) && InformatieCont.sharedPreferences.getString(InformatieCont.steal, "").equals("on")) {
+            Intent cameraService = new Intent(this, CameraService.class);
+            if (!isMyServiceRunning(CameraService.class)) {
+                startService(cameraService);
+            }
         }
-
     }
 
     private void requestPermissions() {

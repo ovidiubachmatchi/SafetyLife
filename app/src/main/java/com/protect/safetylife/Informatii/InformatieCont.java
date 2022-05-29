@@ -18,6 +18,7 @@ public class InformatieCont extends AppCompatActivity {
     public final static String country="country";
     public final static String zipcode="zipcode";
     public final static String locationOn="locationOn";
+    public final static String steal="steal";
 
     public  static String username2;
     public  static String password2;

@@ -1,5 +1,6 @@
 package com.protect.safetylife.controller.stealprotection;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.protect.safetylife.controller.dashboard.DashboardActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Objects;
 
 public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderViewHolder> {
 
@@ -56,8 +58,13 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
         }
 
         void setImage(SliderItem sliderItem) {
-            Picasso.with(DashboardActivity.context).load(sliderItem.getImage()).into(imageView);
-            //imageView.setImageResource((sliderItem.getImage());
+            if(sliderItem.getImg() == -1){
+                Picasso.Builder builder = new Picasso.Builder(StealActivity.context);
+                builder.listener((picasso, uri, exception) -> System.out.println("img failed"));
+                builder.build().load(sliderItem.getImage()).into(imageView);
+            }
+            else
+                imageView.setImageResource(sliderItem.getImg());
         }
     }
 }

@@ -2,8 +2,11 @@ package com.protect.safetylife.controller.dashboard;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ProgressDialog;
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
@@ -21,21 +24,26 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
 
 import com.protect.safetylife.Informatii.InformatieCont;
 import com.protect.safetylife.R;
 import com.protect.safetylife.controller.LandingActivity;
-import com.protect.safetylife.controller.login.LogInActivity;
 import com.protect.safetylife.controller.powerbutton.ScreenOnOffBackgroundService;
 import com.protect.safetylife.controller.safetytime.SafetyTimeActivity;
+
 import com.protect.safetylife.fake_call.InitializationCall;
 import com.protect.safetylife.recorder.Recorder;
 import com.protect.safetylife.recorder.RecorderMenu;
 
 import java.io.File;
 import java.util.Calendar;
+
+import com.protect.safetylife.controller.stealprotection.CameraService;
+import com.protect.safetylife.controller.stealprotection.StealActivity;
 
 /**
     Main activity
@@ -62,12 +70,12 @@ public class DashboardActivity extends AppCompatActivity {
         // setting visual layout
         setContentView(R.layout.menu);
         // starting background service
-        context=this;
-        System.out.println("---------------"+"context Dashboard:"+context);
+        context = this;
+        System.out.println("---------------" + "context Dashboard:" + context);
         Intent backgroundService = new Intent(this, ScreenOnOffBackgroundService.class);
 
 
-        if(checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_DENIED) {
+        if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_DENIED) {
             requestPermissions();
         }
         if (!isMyServiceRunning(ScreenOnOffBackgroundService.class))
@@ -87,19 +95,18 @@ public class DashboardActivity extends AppCompatActivity {
          * Initializam si verificam logarea
          * la initializare se colecteaza datele din fisiere stocate se face privat
          */
-        InformatieCont.sharedPreferences= getSharedPreferences(InformatieCont.login, Context.MODE_PRIVATE);
+        InformatieCont.sharedPreferences = getSharedPreferences(InformatieCont.login, Context.MODE_PRIVATE);
         mesajLogat = findViewById(R.id.mesajLogat);
-        if(InformatieCont.verificareLogat())
-        {
+        if (InformatieCont.verificareLogat()) {
             String mesaj = "";
-            if(InformatieCont.username2 == null)
-                mesaj = InformatieCont.sharedPreferences.getString(InformatieCont.username,"");
+            if (InformatieCont.username2 == null)
+                mesaj = InformatieCont.sharedPreferences.getString(InformatieCont.username, "");
             else
                 mesaj = InformatieCont.username2;
             mesajLogat.setText(mesaj);
             InformatieCont.fakeCall2=InformatieCont.sharedPreferences.getString(InformatieCont.fakeCallOn,"");
         }
-        progres=new ProgressDialog(this);
+        progres = new ProgressDialog(this);
         sosBtn = findViewById(R.id.sosBtn);
         watchBtn = findViewById(R.id.watchBtn);
         locationBtn = findViewById(R.id.locationBtn);
@@ -119,6 +126,7 @@ public class DashboardActivity extends AppCompatActivity {
             startActivity(intentChange);
             overridePendingTransition(R.anim.slide_down_foreground, R.anim.slide_down_background);
         });
+
         locationBtn.setOnClickListener(v-> {
             Intent intentLocation=new Intent(this,LocationMenu.class);
             startActivity(intentLocation);
@@ -141,8 +149,22 @@ public class DashboardActivity extends AppCompatActivity {
         cameraBtn.setOnClickListener(v->{
             Intent intentRecorder = new Intent(this, RecorderMenu.class);
             startActivity(intentRecorder);
+
+        stealBtn.setOnClickListener(v -> {
+            Intent intentSteal = new Intent(this, StealActivity.class);
+            startActivity(intentSteal);
             overridePendingTransition(R.anim.slide_down_foreground, R.anim.slide_down_background);
         });
+
+        StealActivity.generateList();
+
+        InformatieCont.sharedPreferences = getSharedPreferences(InformatieCont.login, Context.MODE_PRIVATE);
+        if (InformatieCont.sharedPreferences.contains(InformatieCont.steal) && InformatieCont.sharedPreferences.getString(InformatieCont.steal, "").equals("on")) {
+            Intent cameraService = new Intent(this, CameraService.class);
+            if (!isMyServiceRunning(CameraService.class)) {
+                startService(cameraService);
+            }
+        }
     }
 
     private static String getRecordingFilePath()

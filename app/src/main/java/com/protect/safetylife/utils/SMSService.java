@@ -1,7 +1,5 @@
 package com.protect.safetylife.utils;
 
-import static com.protect.safetylife.Informatii.InformatieCont.sharedPreferences;
-
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -27,7 +25,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class SMSService {
-    private static String messageToSend = "-";
+    private static String messageToSend = "";
 
     @SuppressLint("MissingPermission")
     public static void sendSMS(List<String> numereSMS) {
@@ -49,11 +47,9 @@ public class SMSService {
                         List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
                         System.out.println(addresses.get(0).getLatitude());
                         messageToSend +=
-                                "SAFETY ALERT - "
-                                +
-                        addresses.get(0).getLatitude() + " " +
-                        addresses.get(0).getLongitude() + " ";
-
+                                        "I AM IN DANGER AT " +
+                                        "https://www.google.com/maps/search/?api=1&query=" +
+                                        addresses.get(0).getLatitude() + "," +  addresses.get(0).getLongitude();
 
                         Intent intent1 = new Intent("locatie");
                         intent1.putExtra("locatie",messageToSend);
@@ -83,6 +79,7 @@ public class SMSService {
                         for (String numar : numereSMS) {
                             SmsManager smsManager = SmsManager.getDefault();
                             smsManager.sendTextMessage(numar, null, locatie, null, null);
+
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

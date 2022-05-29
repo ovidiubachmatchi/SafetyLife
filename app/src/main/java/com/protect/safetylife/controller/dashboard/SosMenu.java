@@ -26,9 +26,14 @@ import java.util.Objects;
 
 public class SosMenu extends AppCompatActivity {
 
+    public static ListView listViewHistory;
+    public static ArrayList<String> historyList;
+    public static ListViewAdapterHistory adapterHistory;
+
     public static ListView listViewCallContacts;
     public static ArrayList<String> callContactsList;
     public static ListViewAdapterCallContacts adapterCallContacts;
+
 
     public static ImageView callContactsAddButton;
     public static EditText callContactsInput;
@@ -60,6 +65,7 @@ public class SosMenu extends AppCompatActivity {
         getWindow().setAllowEnterTransitionOverlap(false);
         getWindow().setAllowReturnTransitionOverlap(false);
         updateContacts();
+        updateHistory();
     }
 
     private void updateContacts() {
@@ -79,6 +85,27 @@ public class SosMenu extends AppCompatActivity {
                     }
                     listViewSmsContacts.setAdapter(adapterSmsContacts);
                     Log.d("data", String.valueOf(document.getData().get("smsContacts")));
+                }
+            } else {
+                Log.d("getContact", "get failed with ", task.getException());
+            }
+        });
+    }
+
+    private void updateHistory() {
+        listViewHistory = findViewById(R.id.sosHistory);
+        historyList = new ArrayList<>();
+        adapterHistory = new ListViewAdapterHistory(getApplicationContext(), historyList);
+        DocumentReference docRef = dbSOSMENU.collection("soshistory").document(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists() && (document.getData().get("time") != "" || document.getData().get("time") != null)) {
+                    for (Object smsContact : (ArrayList) Objects.requireNonNull(document.getData().get("time"))) {
+                        historyList.add((String) smsContact);
+                    }
+                    Log.d("data-time", String.valueOf(document.getData().get("time")));
+                    listViewHistory.setAdapter(adapterHistory);
                 }
             } else {
                 Log.d("getContact", "get failed with ", task.getException());

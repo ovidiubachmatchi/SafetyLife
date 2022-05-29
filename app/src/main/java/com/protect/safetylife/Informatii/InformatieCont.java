@@ -18,11 +18,12 @@ public class InformatieCont extends AppCompatActivity {
     public final static String country="country";
     public final static String zipcode="zipcode";
     public final static String locationOn="locationOn";
+
     public final static String fakeCallOn="fakeCallOn";
     public final static String sosSmsOn="sosSmsOn";
     public final static String phoneFake="phoneFake";
     public final static String recorder="recorder";
-
+    public final static String steal="steal";
     public  static String username2;
     public  static String password2;
     public  static String userId2;

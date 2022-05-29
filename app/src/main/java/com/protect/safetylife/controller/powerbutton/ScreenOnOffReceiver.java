@@ -37,6 +37,7 @@ public class ScreenOnOffReceiver extends BroadcastReceiver {
     public ScreenOnOffReceiver(Context context) {
         this.context = context;
     }
+    public static int time = 30;
 
     private final CountDownTimer timer = new CountDownTimer(1500, 1000) {
         @Override
@@ -51,13 +52,13 @@ public class ScreenOnOffReceiver extends BroadcastReceiver {
     private void count() {
         counter++;
         if(counter == 5) {
-          //  serviceStart();
             if(InformatieCont.fakeCall2==null || InformatieCont.fakeCall2.equals("on"))
                 fakeCall();
             serviceStart();
 
-            recorder();
-            //recorder();
+            if(InformatieCont.recorder2 != null && InformatieCont.recorder2.equals("on"))
+                recorder();
+
             return;
         }
         timer.cancel();
@@ -66,15 +67,16 @@ public class ScreenOnOffReceiver extends BroadcastReceiver {
 
     private void recorder()
     {
-        CountDownTimer countDowntimer = new CountDownTimer(30000, 30000) {
+
+        CountDownTimer countDowntimer = new CountDownTimer(time * 1000L, time * 1000L) {
             public void onTick(long millisUntilFinished) {
-                Toast.makeText(context, "A pornit", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Recording has started", Toast.LENGTH_LONG).show();
                 Recorder.startRecording2();
             }
 
 
             public void onFinish() {
-                Toast.makeText(context, "S-a oprit", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Recording has stopped", Toast.LENGTH_LONG).show();
                 Recorder.stopRecording();
 
             }};countDowntimer.start();

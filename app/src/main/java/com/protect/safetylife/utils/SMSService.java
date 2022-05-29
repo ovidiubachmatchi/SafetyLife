@@ -76,9 +76,6 @@ public class SMSService {
             String locatie = intent.getStringExtra("locatie");
             ArrayList<String> numereSMS = intent.getStringArrayListExtra("numereSMS");
 
-            System.out.println("testareaddsaasdadas");
-
-
             Thread x = new Thread() {
                 @Override
                 public void run() {

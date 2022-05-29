@@ -10,9 +10,9 @@
         android:id="@+id/imageView16"
         android:layout_width="175dp"
         android:layout_height="212dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="312dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.928"
+        app:layout_constraintHorizontal_bias="0.923"
         app:layout_constraintStart_toEndOf="@+id/buttonStartStop"
         app:layout_constraintTop_toBottomOf="@+id/numberPickerSeconds"
         app:srcCompat="@drawable/ic_undraw_time_management_re_tk5w" />
@@ -21,8 +21,8 @@
         android:id="@+id/imageView17"
         android:layout_width="179dp"
         android:layout_height="333dp"
-        android:layout_marginTop="164dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="256dp"
+        android:layout_marginEnd="4dp"
         app:layout_constraintEnd_toStartOf="@+id/buttonStartStop"
         app:layout_constraintTop_toBottomOf="@+id/numberPickerHours"
         app:srcCompat="@drawable/ic_undraw_financial_data_re_p0fl" />
@@ -31,13 +31,12 @@
         android:id="@+id/numberPickerSeconds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
         app:layout_constraintBottom_toTopOf="@+id/progressBarCircle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.810"
+        app:layout_constraintHorizontal_bias="0.841"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewName"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textViewTime"
@@ -49,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.629" />
+        app:layout_constraintVertical_bias="0.51" />
 
     <ProgressBar
         android:id="@+id/progressBarCircle"
@@ -65,10 +64,10 @@
         android:rotation="-90"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textViewTime"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="@+id/textViewTime"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.68" />
+        app:layout_constraintVertical_bias="0.519" />
 
     <Button
         android:id="@+id/buttonStartStop"
@@ -80,8 +79,10 @@
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBarCircle" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBarCircle"
+        app:layout_constraintVertical_bias="0.839" />
 
     <TextView
         android:id="@+id/textViewName"
@@ -93,36 +94,32 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/progressBarCircle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.475"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.183" />
+        app:layout_constraintVertical_bias="0.117" />
 
     <NumberPicker
         android:id="@+id/numberPickerHours"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
         app:layout_constraintBottom_toTopOf="@+id/progressBarCircle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.186"
+        app:layout_constraintHorizontal_bias="0.158"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewName"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <NumberPicker
         android:id="@+id/numberPickerMinutes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
         app:layout_constraintBottom_toTopOf="@+id/progressBarCircle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewName"
-        app:layout_constraintVertical_bias="0.0" />
-
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,8 +32,10 @@ import com.protect.safetylife.controller.powerbutton.ScreenOnOffBackgroundServic
 import com.protect.safetylife.controller.safetytime.SafetyTimeActivity;
 import com.protect.safetylife.fake_call.InitializationCall;
 import com.protect.safetylife.recorder.Recorder;
+import com.protect.safetylife.recorder.RecorderMenu;
 
 import java.io.File;
+import java.util.Calendar;
 
 /**
     Main activity
@@ -50,7 +52,6 @@ public class DashboardActivity extends AppCompatActivity {
     private ImageView locationBtn;
     private ImageView cameraBtn;
     private ImageView stealBtn;
-    private ImageView reminderBtn;
     private ImageView fakeCallBtn;
     private ImageView settings;
     public static String pathRecord;
@@ -104,7 +105,6 @@ public class DashboardActivity extends AppCompatActivity {
         locationBtn = findViewById(R.id.locationBtn);
         cameraBtn = findViewById(R.id.cameraBtn);
         stealBtn = findViewById(R.id.stealBtn);
-        reminderBtn = findViewById(R.id.reminderBtn);
         fakeCallBtn = findViewById(R.id.fakeCallBtn);
 
 
@@ -121,7 +121,9 @@ public class DashboardActivity extends AppCompatActivity {
         });
         locationBtn.setOnClickListener(v-> {
             Intent intentLocation=new Intent(this,LocationMenu.class);
-                startActivity(intentLocation);
+            startActivity(intentLocation);
+            overridePendingTransition(R.anim.slide_down_foreground, R.anim.slide_down_background);
+
         });
         fakeCallBtn.setOnClickListener(v-> {
             Intent intent4=new Intent(this, InitializationCall.class);
@@ -129,13 +131,17 @@ public class DashboardActivity extends AppCompatActivity {
             overridePendingTransition(R.anim.slide_down_foreground, R.anim.slide_down_background);
         });
 
+
         pathRecord=getRecordingFilePath();
         if(isMicrophonePresent())
         {
             getMicrofonPermision();
         }
+
         cameraBtn.setOnClickListener(v->{
-            recorder();
+            Intent intentRecorder = new Intent(this, RecorderMenu.class);
+            startActivity(intentRecorder);
+            overridePendingTransition(R.anim.slide_down_foreground, R.anim.slide_down_background);
         });
     }
 
@@ -143,7 +149,7 @@ public class DashboardActivity extends AppCompatActivity {
     {
         ContextWrapper contextWrapper=new ContextWrapper(context.getApplicationContext());
         File musicD=contextWrapper.getExternalFilesDir(Environment.DIRECTORY_MUSIC);
-        File file=new File(musicD,"testrecording2"+".mp3");
+        File file=new File(musicD,"recording_" + Calendar.getInstance().getTime() +".mp3");
         return file.getPath();
     }
 
@@ -161,26 +167,6 @@ public class DashboardActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.RECORD_AUDIO},200);
         }
     }
-
-    private void recorder()
-    {
-        CountDownTimer countDowntimer = new CountDownTimer(20000, 20000) {
-            public void onTick(long millisUntilFinished) {
-                Toast.makeText(context, "A pornit inregistrarea!", Toast.LENGTH_LONG).show();
-                Recorder.startRecording2();
-            }
-
-
-            public void onFinish() {
-                Toast.makeText(context, "S-a oprit inregistrarea!", Toast.LENGTH_LONG).show();
-                System.out.println(DashboardActivity.pathRecord+"\"testrecording2\"+\".mp3\"");
-                Recorder.stopRecording();
-
-            }};countDowntimer.start();
-    }
-
-
-
 
     private void requestPermissions() {
         if (checkSelfPermission(Manifest.permission.SEND_SMS)

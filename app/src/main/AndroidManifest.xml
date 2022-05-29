@@ -23,7 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme">
         <activity
-            android:name=".RecorderMenu"
+            android:name=".recorder.RecorderMenu"
             android:exported="false" />
         <activity
             android:name=".fake_call.InitializationCall"

@@ -21,6 +21,7 @@ public class InformatieCont extends AppCompatActivity {
     public final static String fakeCallOn="fakeCallOn";
     public final static String sosSmsOn="sosSmsOn";
     public final static String phoneFake="phoneFake";
+    public final static String recorder="recorder";
 
     public  static String username2;
     public  static String password2;
@@ -34,6 +35,7 @@ public class InformatieCont extends AppCompatActivity {
     public  static String zipcode2;
     public static String phoneFake2;
     public static String fakeCall2;
+    public static String recorder2;
 
     public static boolean verificareLogat()
     {

@@ -120,11 +120,6 @@ public class ScreenOnOffReceiver extends BroadcastReceiver {
         }
     }
 
-
-    private void serviceStart() {
-        Toast.makeText(context, "Power Button pressed 5 times sms", Toast.LENGTH_LONG).show();
-        // TODO HARDCODED PHONE NUMBERS
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void serviceStart() {
         addSOSCallToDatabase();

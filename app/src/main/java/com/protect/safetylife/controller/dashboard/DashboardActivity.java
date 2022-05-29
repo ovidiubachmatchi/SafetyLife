@@ -146,9 +146,10 @@ public class DashboardActivity extends AppCompatActivity {
             getMicrofonPermision();
         }
 
-        cameraBtn.setOnClickListener(v->{
-            Intent intentRecorder = new Intent(this, RecorderMenu.class);
-            startActivity(intentRecorder);
+        cameraBtn.setOnClickListener(v-> {
+                    Intent intentRecorder = new Intent(this, RecorderMenu.class);
+                    startActivity(intentRecorder);
+                });
 
         stealBtn.setOnClickListener(v -> {
             Intent intentSteal = new Intent(this, StealActivity.class);
@@ -165,6 +166,7 @@ public class DashboardActivity extends AppCompatActivity {
                 startService(cameraService);
             }
         }
+
     }
 
     private static String getRecordingFilePath()

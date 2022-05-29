@@ -17,12 +17,12 @@ import com.protect.safetylife.controller.signup.SignUp4Activity;
 
 import java.util.ArrayList;
 
-public class ListViewAdapterSOS extends ArrayAdapter<String> {
+public class ListViewAdapterLocationHistory extends ArrayAdapter<String> {
     private ArrayList<String> list;
     private Context context;
 
 
-    public ListViewAdapterSOS(Context context, ArrayList<String> items)
+    public ListViewAdapterLocationHistory(Context context, ArrayList<String> items)
     {
         super(context, R.layout.lista_boli,items);
         this.context=context;
@@ -34,13 +34,10 @@ public class ListViewAdapterSOS extends ArrayAdapter<String> {
         if(convertView==null)
         {
             LayoutInflater layout = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            convertView=layout.inflate(R.layout.lista_boli,null);
-            TextView numar=convertView.findViewById(R.id.numar);
-            numar.setText(position+1+".");
-            TextView nume=convertView.findViewById(R.id.nume);
+            convertView=layout.inflate(R.layout.list_location_history,null);
+            TextView nume=convertView.findViewById(R.id.textListLocationHistory);
+            System.out.println(position);
             nume.setText(list.get(position));
-            ImageView delete=convertView.findViewById(R.id.sterge);
-            delete.setOnClickListener(view -> SignUp4Activity.stergreBoli(position));
         }
         return convertView;
     }

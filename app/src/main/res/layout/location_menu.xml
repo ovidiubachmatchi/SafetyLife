@@ -7,14 +7,28 @@
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="394dp"
-        android:layout_height="571dp"
+        android:layout_width="359dp"
+        android:layout_height="366dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.621"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location_history"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_undraw_location_tracking_re_n3ok" />
+
+    <ImageView
+        android:id="@+id/location_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/div" />
 
     <Switch
         android:id="@+id/switchLocation"
@@ -34,13 +48,14 @@
 
     <TextView
         android:id="@+id/textView19"
-        android:layout_width="293dp"
-        android:layout_height="25dp"
+        android:layout_width="296dp"
+        android:layout_height="30dp"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:text="Enable location for history:"
-        android:textColor="#1A237E"
-        android:textSize="20sp"
+        android:textColor="#6C63FF"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/switchLocation"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,11 +67,39 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="Tracking enabled"
-        android:textColor="#B71C1C"
+        android:textColor="#E60000"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switchLocation" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="227dp"
+        android:layout_height="149dp"
+        app:layout_constraintBottom_toBottomOf="@+id/location_history"
+        app:layout_constraintEnd_toEndOf="@+id/location_history"
+        app:layout_constraintHorizontal_bias="0.684"
+        app:layout_constraintStart_toStartOf="@+id/location_history"
+        app:layout_constraintTop_toTopOf="@+id/location_history"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_undraw_navigation_re_wxx4" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="153dp"
+        android:layout_height="91dp"
+        android:layout_marginEnd="184dp"
+        android:text="List of history location"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/location_history"
+        app:layout_constraintEnd_toEndOf="@+id/location_history"
+        app:layout_constraintTop_toTopOf="@+id/location_history"
+        app:layout_constraintVertical_bias="0.217" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

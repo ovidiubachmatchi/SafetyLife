@@ -4,6 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".recorder.RecorderMenu">
+    tools:context=".fake_call.InitializationCall">
+
+    <Switch
+        android:id="@+id/switchFakeCall"
+        android:layout_width="68dp"
+        android:layout_height="41dp"
+        android:showText="true"
+        android:textOff="Off"
+        android:textOn="On"
+        android:thumb="@drawable/thumb"
+        android:track="@drawable/track"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.835"
+        app:layout_constraintStart_toEndOf="@+id/textView27"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.057"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="343dp"
+        android:layout_height="405dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_undraw_recording_re_5xyq" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recorder
+"
+        android:textColor="#6C63FF"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.137" />
+
+    <TextView
+        android:id="@+id/fakeCallActivate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="200dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switchFakeCall"
+        app:layout_constraintVertical_bias="0.095" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,7 @@ public class RecorderMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recorder_menu);
+
     }
 
 }

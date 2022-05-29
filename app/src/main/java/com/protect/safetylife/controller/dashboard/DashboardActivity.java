@@ -1,21 +1,28 @@
 package com.protect.safetylife.controller.dashboard;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.protect.safetylife.Informatii.InformatieCont;
 import com.protect.safetylife.R;
@@ -23,6 +30,10 @@ import com.protect.safetylife.controller.LandingActivity;
 import com.protect.safetylife.controller.login.LogInActivity;
 import com.protect.safetylife.controller.powerbutton.ScreenOnOffBackgroundService;
 import com.protect.safetylife.controller.safetytime.SafetyTimeActivity;
+import com.protect.safetylife.fake_call.InitializationCall;
+import com.protect.safetylife.recorder.Recorder;
+
+import java.io.File;
 
 /**
     Main activity
@@ -42,6 +53,7 @@ public class DashboardActivity extends AppCompatActivity {
     private ImageView reminderBtn;
     private ImageView fakeCallBtn;
     private ImageView settings;
+    public static String pathRecord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +96,7 @@ public class DashboardActivity extends AppCompatActivity {
             else
                 mesaj = InformatieCont.username2;
             mesajLogat.setText(mesaj);
+            InformatieCont.fakeCall2=InformatieCont.sharedPreferences.getString(InformatieCont.fakeCallOn,"");
         }
         progres=new ProgressDialog(this);
         sosBtn = findViewById(R.id.sosBtn);
@@ -110,7 +123,64 @@ public class DashboardActivity extends AppCompatActivity {
             Intent intentLocation=new Intent(this,LocationMenu.class);
                 startActivity(intentLocation);
         });
+        fakeCallBtn.setOnClickListener(v-> {
+            Intent intent4=new Intent(this, InitializationCall.class);
+            startActivity(intent4);
+            overridePendingTransition(R.anim.slide_down_foreground, R.anim.slide_down_background);
+        });
+
+        pathRecord=getRecordingFilePath();
+        if(isMicrophonePresent())
+        {
+            getMicrofonPermision();
+        }
+        cameraBtn.setOnClickListener(v->{
+            recorder();
+        });
     }
+
+    private static String getRecordingFilePath()
+    {
+        ContextWrapper contextWrapper=new ContextWrapper(context.getApplicationContext());
+        File musicD=contextWrapper.getExternalFilesDir(Environment.DIRECTORY_MUSIC);
+        File file=new File(musicD,"testrecording2"+".mp3");
+        return file.getPath();
+    }
+
+    private  boolean isMicrophonePresent()
+    {
+        if(this.getPackageManager().hasSystemFeature(PackageManager.FEATURE_MICROPHONE))
+        {
+            return true;
+        }
+        return false;
+    }
+    private void getMicrofonPermision(){
+        if(ContextCompat.checkSelfPermission(this,Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED)
+        {
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.RECORD_AUDIO},200);
+        }
+    }
+
+    private void recorder()
+    {
+        CountDownTimer countDowntimer = new CountDownTimer(20000, 20000) {
+            public void onTick(long millisUntilFinished) {
+                Toast.makeText(context, "A pornit inregistrarea!", Toast.LENGTH_LONG).show();
+                Recorder.startRecording2();
+            }
+
+
+            public void onFinish() {
+                Toast.makeText(context, "S-a oprit inregistrarea!", Toast.LENGTH_LONG).show();
+                System.out.println(DashboardActivity.pathRecord+"\"testrecording2\"+\".mp3\"");
+                Recorder.stopRecording();
+
+            }};countDowntimer.start();
+    }
+
+
+
 
     private void requestPermissions() {
         if (checkSelfPermission(Manifest.permission.SEND_SMS)

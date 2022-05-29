@@ -18,6 +18,9 @@ public class InformatieCont extends AppCompatActivity {
     public final static String country="country";
     public final static String zipcode="zipcode";
     public final static String locationOn="locationOn";
+    public final static String fakeCallOn="fakeCallOn";
+    public final static String sosSmsOn="sosSmsOn";
+    public final static String phoneFake="phoneFake";
 
     public  static String username2;
     public  static String password2;
@@ -29,6 +32,8 @@ public class InformatieCont extends AppCompatActivity {
     public  static String street2;
     public  static String country2;
     public  static String zipcode2;
+    public static String phoneFake2;
+    public static String fakeCall2;
 
     public static boolean verificareLogat()
     {
